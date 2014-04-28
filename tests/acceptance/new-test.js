@@ -5,7 +5,7 @@ var ember     = require('../helpers/ember');
 var assert    = require('assert');
 var forEach   = require('lodash-node/compat/collections/forEach');
 var walkSync  = require('walk-sync');
-var Blueprint = require('../../lib/blueprint');
+var Blueprint = require('../../lib/models/blueprint');
 var path      = require('path');
 var tmp       = require('../helpers/tmp');
 var root      = process.cwd();
@@ -28,7 +28,7 @@ describe('Acceptance: ember new', function() {
 
   function confirmBlueprintedForDir(dir) {
     return function() {
-      var blueprintPath = path.join(root, dir);
+      var blueprintPath = path.join(root, dir, 'files');
       var expected      = walkSync(blueprintPath);
       var actual        = walkSync('.').sort();
       var folder        = path.basename(process.cwd());
@@ -47,7 +47,7 @@ describe('Acceptance: ember new', function() {
   }
 
   function confirmBlueprinted() {
-    return confirmBlueprintedForDir('blueprint');
+    return confirmBlueprintedForDir('blueprints/app');
   }
 
   it('ember new foo, where foo does not yet exist, works', function() {
@@ -102,7 +102,8 @@ describe('Acceptance: ember new', function() {
 
   it('ember new with blueprint uses the specified blueprint directory', function() {
     tmp.setup('./tmp/my_blueprint');
-    fs.writeFileSync('./tmp/my_blueprint/gitignore');
+    tmp.setup('./tmp/my_blueprint/files');
+    fs.writeFileSync('./tmp/my_blueprint/files/gitignore');
     process.chdir('./tmp');
 
     return ember([
