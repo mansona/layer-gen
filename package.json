@@ -1,0 +1,15 @@
+{
+  "name": "layer-gen",
+  "version": "0.0.0",
+  "description": "",
+  "bin": {
+    "gen": "./bin/gen.mjs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chris Manson <chris@manson.ie>",
+  "license": "MIT",
+  "dependencies": {
+  }
+}
