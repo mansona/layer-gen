@@ -1,1 +1,5 @@
 /node_modules/
+
+
+# generated test files
+test/fixtures/local-blueprint/app
