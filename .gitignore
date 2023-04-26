@@ -1,5 +1,6 @@
-/node_modules/
-
+node_modules
 
 # generated test files
 test/fixtures/local-blueprint/app
+test/fixtures/dependency-blueprint/app
+test/fixtures/deep-dependency-blueprint/app

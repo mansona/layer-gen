@@ -28,8 +28,14 @@ let taskArgs = {
 //     this.project.initializeAddons();
 // }
 
-
-await generateFromBlueprint(argv);
+try {
+  await generateFromBlueprint(argv);
+} catch (err) {
+  console.log('got an error');
+  console.error(err.message);
+  console.log(err.stack)
+  process.exit(1);
+}
 
 
 // this.runTask('GenerateFromBlueprint', taskOptions);

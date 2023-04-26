@@ -4,9 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 const stringUtil = require('ember-cli-string-utils');
-const EmberRouterGenerator = require('ember-router-generator');
-
-const maybePolyfillTypeScriptBlueprints = require('../-maybe-polyfill-typescript-blueprints');
 
 module.exports = {
   description: 'Generates a route and a template, and registers the route with the router.',
@@ -32,7 +29,6 @@ module.exports = {
 
   init() {
     this._super && this._super.init.apply(this, arguments);
-    maybePolyfillTypeScriptBlueprints(this);
   },
 
   fileMapTokens: function () {
@@ -82,7 +78,8 @@ module.exports = {
   locals: function (options) {
     let moduleName = options.entity.name;
     let rawRouteName = moduleName.split('/').pop();
-    let emberPageTitleExists = 'ember-page-title' in options.project.dependencies();
+    // let emberPageTitleExists = 'ember-page-title' in options.project.dependencies();
+    let emberPageTitleExists = false;
     let hasDynamicSegment = options.path && options.path.includes(':');
 
     if (options.resetNamespace) {
@@ -139,13 +136,6 @@ function updateRouter(action, options) {
     remove: 'red',
   };
   let color = actionColorMap[action] || 'gray';
-
-  if (this.shouldTouchRouter(entity.name, options)) {
-    writeRoute(action, entity.name, options);
-
-    this.ui.writeLine('updating router');
-    this._writeStatusToUI(chalk[color], action + ' route', entity.name);
-  }
 }
 
 function findRouter(options) {
@@ -159,14 +149,4 @@ function findRouter(options) {
   }
 
   return routerPathParts;
-}
-
-function writeRoute(action, name, options) {
-  let routerPath = path.join.apply(null, findRouter(options));
-  let source = fs.readFileSync(routerPath, 'utf-8');
-
-  let routes = new EmberRouterGenerator(source);
-  let newRoutes = routes[action](name, options);
-
-  fs.writeFileSync(routerPath, newRoutes.code());
 }
