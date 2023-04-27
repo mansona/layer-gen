@@ -4,7 +4,6 @@ const fs = require('fs-extra');
 const { expect } = require('chai');
 const MockUI = require('console-ui/mock');
 const GitInitTask = require('../../../lib/tasks/git-init');
-const MockProject = require('../../helpers/mock-project');
 const path = require('path');
 let root = process.cwd();
 const mkTmpDirIn = require('../../../lib/utilities/mk-tmp-dir-in');
@@ -17,7 +16,6 @@ describe('git-init', function () {
   beforeEach(async function () {
     task = new GitInitTask({
       ui: new MockUI(),
-      project: new MockProject(),
       _gitVersion: td.function(),
       _gitInit: td.function(),
       _gitAdd: td.function(),

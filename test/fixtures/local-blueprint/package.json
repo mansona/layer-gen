@@ -1,0 +1,7 @@
+{
+  "name": "local-blueprint",
+  "version": "1.0.0",
+  "dependencies": {
+    "route-blueprint": "file:../route-blueprint"
+  }
+}

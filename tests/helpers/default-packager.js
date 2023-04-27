@@ -290,19 +290,7 @@ function setupRegistry(registryMap) {
   };
 }
 
-function setupProject(rootPath) {
-  const path = require('path');
-  const Project = require('../../lib/models/project');
-  const MockCLI = require('./mock-cli');
-
-  const packageContents = require(path.join(rootPath, 'package.json'));
-  let cli = new MockCLI();
-
-  return new Project(rootPath, packageContents, cli.ui, cli);
-}
-
 module.exports = {
-  setupProject,
   setupRegistry,
   setupRegistryFor,
   validateDefaultPackagedDist,

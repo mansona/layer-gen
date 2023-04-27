@@ -1,7 +1,7 @@
 'use strict';
 
 const Blueprint = require('../../lib/models/blueprint');
-const isPackageMissing = require('ember-cli-is-package-missing');
+const isPackageMissing = require('../../lib/utilities/is-package-missing');
 
 module.exports = {
   description: 'Generates a mock api endpoint in /api prefix.',

@@ -24,7 +24,7 @@
   "author": "Stefan Penner, Robert Jackson and ember-cli contributors",
   "main": "lib/cli/index.js",
   "bin": {
-    "ember": "./bin/ember"
+    "gen": "./bin/gen"
   },
   "scripts": {
     "docs": "yuidoc",
@@ -62,7 +62,6 @@
     "core-object": "^3.1.5",
     "dag-map": "^2.0.2",
     "diff": "^5.1.0",
-    "ember-cli-is-package-missing": "^1.0.0",
     "ember-cli-lodash-subset": "^2.0.1",
     "ember-cli-normalize-entity-name": "^1.0.0",
     "ember-cli-preprocess-registry": "^3.3.0",
@@ -132,6 +131,7 @@
     "chai-as-promised": "^7.1.1",
     "chai-files": "^1.4.0",
     "chai-jest-snapshot": "^2.0.0",
+    "compare-fixture": "^1.1.0",
     "ember-cli-blueprint-test-helpers": "^0.19.2",
     "ember-cli-internal-test-helpers": "^0.9.1",
     "eslint": "^8.37.0",

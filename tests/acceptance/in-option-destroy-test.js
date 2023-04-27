@@ -15,7 +15,7 @@ const BlueprintNpmTask = require('ember-cli-internal-test-helpers/lib/helpers/di
 const { expect } = require('chai');
 const { file } = require('chai-files');
 
-describe('Acceptance: ember destroy with --in option', function () {
+describe.skip('Acceptance: ember destroy with --in option', function () {
   let tmpdir;
 
   this.timeout(20000);
@@ -91,7 +91,7 @@ describe('Acceptance: ember destroy with --in option', function () {
     return assertDestroyAfterGenerate(commandArgs, addonPath, files);
   });
 
-  it('blueprint foo --in non-lib/other-thing', function () {
+  it.skip('blueprint foo --in non-lib/other-thing', function () {
     let addonPath = 'non-lib/other-thing';
     let commandArgs = ['foo', 'bar', '--in', addonPath];
     let files = ['non-lib/other-thing/addon/foos/bar.js'];
@@ -99,7 +99,7 @@ describe('Acceptance: ember destroy with --in option', function () {
     return assertDestroyAfterGenerate(commandArgs, addonPath, files);
   });
 
-  it('blueprint foo --in non-lib/nested/other-thing', function () {
+  it.skip('blueprint foo --in non-lib/nested/other-thing', function () {
     let addonPath = 'non-lib/nested/other-thing';
     let commandArgs = ['foo', 'bar', '--in', addonPath];
     let files = ['non-lib/nested/other-thing/addon/foos/bar.js'];

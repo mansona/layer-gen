@@ -4,6 +4,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const stringUtil = require('ember-cli-string-utils');
 const stringifyAndNormalize = require('../../lib/utilities/stringify-and-normalize');
+const findUp = require('find-up');
 
 module.exports = {
   description: 'The blueprint for addon in repo ember-cli addons.',
@@ -51,7 +52,8 @@ module.exports = {
   },
 
   _generatePackageJson(options, isInstall) {
-    let packagePath = path.join(this.project.root, 'package.json');
+    // let packagePath = path.join(this.project.root, 'package.json');
+    let packagePath = findUp.sync('package.json');
     let contents = this._readJsonSync(packagePath);
     let { root, name } = this._processTokens(options.entity.name);
     let newPath = [root, name].join('/');

@@ -71,7 +71,7 @@ describe('PackageCache', function () {
 
     let manifest;
     manifest = JSON.parse(testPackageCache._readManifest('self', 'yarn'));
-    expect(manifest.name).to.equal('ember-cli');
+    expect(manifest.name).to.equal('layer-gen');
 
     manifest = testPackageCache._readManifest('nonexistent', 'yarn');
     expect(manifest).to.be.null;

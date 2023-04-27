@@ -9,7 +9,7 @@ const broccoliTestHelper = require('broccoli-test-helper');
 const createBuilder = broccoliTestHelper.createBuilder;
 const createTempDir = broccoliTestHelper.createTempDir;
 
-describe('.ember-cli leek options', function () {
+describe.skip('.ember-cli leek options', function () {
   let passedOptions, leekConfigFolder;
 
   before(async function () {

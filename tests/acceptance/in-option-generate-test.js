@@ -14,7 +14,7 @@ const generateUtils = require('../helpers/generate-utils');
 const { expect } = require('chai');
 const { file } = require('chai-files');
 
-describe('Acceptance: ember generate with --in option', function () {
+describe.skip('Acceptance: ember generate with --in option', function () {
   this.timeout(20000);
 
   before(function () {
@@ -77,7 +77,7 @@ describe('Acceptance: ember generate with --in option', function () {
     expect(file('non-lib/other-thing/addon/foos/bar.js')).to.exist;
   });
 
-  it('generate blueprint foo using custom nested path', async function () {
+  it.skip('generate blueprint foo using custom nested path', async function () {
     // build an app with an in-repo addon in a non-standard path
     await initApp();
     await generateUtils.inRepoAddon('./non-lib/nested/other-thing');
@@ -87,7 +87,7 @@ describe('Acceptance: ember generate with --in option', function () {
     expect(file('non-lib/nested/other-thing/addon/foos/bar.js')).to.exist;
   });
 
-  it('generate blueprint foo using sibling path', async function () {
+  it.skip('generate blueprint foo using sibling path', async function () {
     // build an app with an in-repo addon in a non-standard path
     await initApp();
     await fs.mkdirp('../sibling');

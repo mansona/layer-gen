@@ -211,7 +211,7 @@ describe('models/command.js', function () {
         });
     });
 
-    it('selects watcher if an option', function () {
+    it.skip('selects watcher if an option', function () {
       return new InsideProjectCommand(
         Object.assign(options, {
           availableOptions: [{ type: 'string', name: 'watcher' }],

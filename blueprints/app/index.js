@@ -51,7 +51,7 @@ module.exports = {
       name,
       modulePrefix: name,
       namespace,
-      emberCLIVersion: require('../../package').version,
+      emberCLIVersion: '4.12.0',
       yarn: options.yarn,
       welcome: options.welcome,
       blueprint: 'app',

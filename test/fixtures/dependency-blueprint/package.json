@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "local-blueprint": "file:../local-blueprint"
+  },
+  "layer-gen": {
+    "blueprints": {
+      "basic": "local-blueprint"
+    }
+  }
+}
