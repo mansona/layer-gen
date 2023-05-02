@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+   group: ci-${{ github.head_ref || github.ref }}
+   cancel-in-progress: true
+
+jobs:
+  linting:
+    name: Linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: 'npm'
+
+      - run: npm ci
+      - run: npm run lint
+
+  basic-tests:
+    name: "Basic Tests - ${{ matrix.os }}"
+    runs-on: "${{ matrix.os }}-latest"
+
+    strategy:
+      matrix:
+        os: [ubuntu, macOS, windows]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: 'npm'
+
+      - run: npm ci
+      - run: npm test
+
+  tests:
+    name: "Node ${{ matrix.node-version }} - ${{ matrix.os }} "
+    runs-on: "${{ matrix.os }}-latest"
+
+    needs: [linting, basic-tests]
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+        os: [ubuntu, windows]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - run: npm ci
+      - run: npm run test:all
