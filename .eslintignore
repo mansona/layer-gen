@@ -5,6 +5,7 @@
 /docs/build/
 /node_modules/
 /tests/fixtures/
+/test/fixtures/
 /tmp/
 
 /lib/broccoli/app-*.js

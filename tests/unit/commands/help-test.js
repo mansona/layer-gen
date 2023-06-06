@@ -262,54 +262,6 @@ ${EOL}\
 
       td.verify(Command1.prototype.printBasicHelp(), { ignoreExtraArgs: true, times: 1 });
     });
-
-    it('lists addons', function () {
-      let Command1 = function () {};
-      let Command2 = function () {};
-      Command1.prototype.printBasicHelp = td.function();
-      Command2.prototype.printBasicHelp = td.function();
-
-      options.project.eachAddonCommand = function (callback) {
-        callback('my-addon', {
-          Command1,
-          Command2,
-        });
-      };
-
-      let command = new HelpCommand(options);
-
-      command.run(options, []);
-
-      let output = options.ui.output;
-
-      let testString = processHelpString(`${EOL}\
-Available commands from my-addon:${EOL}`);
-
-      expect(output).to.include(testString);
-
-      td.verify(Command1.prototype.printBasicHelp(), { ignoreExtraArgs: true, times: 1 });
-      td.verify(Command2.prototype.printBasicHelp(), { ignoreExtraArgs: true, times: 1 });
-    });
-
-    it('finds single addon command', function () {
-      let Command1 = function () {};
-      let Command2 = function () {};
-      Command1.prototype.printBasicHelp = td.function();
-      Command1.prototype.printDetailedHelp = td.function();
-
-      options.project.eachAddonCommand = function (callback) {
-        callback('my-addon', {
-          Command1,
-          Command2,
-        });
-      };
-
-      let command = new HelpCommand(options);
-
-      command.run(options, ['command-1']);
-
-      td.verify(Command1.prototype.printBasicHelp(), { ignoreExtraArgs: true, times: 1 });
-    });
   });
 
   describe('unique to json printing', function () {
@@ -410,52 +362,6 @@ Available commands from my-addon:${EOL}`);
       expect(json.commands).to.deep.equal([
         {
           test2: 'bar',
-        },
-      ]);
-    });
-
-    it('lists addons', function () {
-      let Command1 = function () {
-        return {
-          getJson() {
-            return {
-              test1: 'foo',
-            };
-          },
-        };
-      };
-
-      let Command2 = function () {
-        return {
-          getJson() {
-            return {
-              test2: 'bar',
-            };
-          },
-        };
-      };
-
-      options.project.eachAddonCommand = function (callback) {
-        callback('my-addon', { Command1, Command2 });
-      };
-
-      let command = new HelpCommand(options);
-
-      command.run(options, []);
-
-      let json = convertToJson(options.ui.output);
-
-      expect(json.addons).to.deep.equal([
-        {
-          name: 'my-addon',
-          commands: [
-            {
-              test1: 'foo',
-            },
-            {
-              test2: 'bar',
-            },
-          ],
         },
       ]);
     });

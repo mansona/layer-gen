@@ -2,7 +2,6 @@
 
 const { expect } = require('chai');
 const Blueprint = require('../../../lib/models/blueprint');
-const Project = require('../../../lib/models/project');
 const Command = require('../../../lib/models/command');
 const mergeBlueprintOptions = require('../../../lib/utilities/merge-blueprint-options');
 const td = require('testdouble');
@@ -24,9 +23,7 @@ describe('merge-blueprint-options', function () {
   });
 
   function buildCommand() {
-    return new TestCommand({
-      project: new Project(process.cwd(), { name: 'some-random-name' }),
-    });
+    return new TestCommand({});
   }
 
   it("it works as a command's beforeRun()", function () {

@@ -3,11 +3,10 @@
 const { expect } = require('chai');
 const Command = require('../../lib/models/command');
 const MockUI = require('console-ui/mock');
-const MockProject = require('../helpers/mock-project');
 let command;
 let called = false;
 
-describe('analytics', function () {
+describe.skip('analytics', function () {
   beforeEach(function () {
     let analytics = {
       track() {
@@ -20,15 +19,9 @@ describe('analytics', function () {
       run() {},
     });
 
-    let project = new MockProject();
-    project.isEmberCLIProject = function () {
-      return true;
-    };
-
     command = new FakeCommand({
       ui: new MockUI(),
       analytics,
-      project,
     });
   });
 

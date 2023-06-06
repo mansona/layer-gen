@@ -41,7 +41,7 @@ module.exports = {
   },
 
   locals(options) {
-    let addonRawName = options.inRepoAddon ? options.inRepoAddon : options.project.name();
+    let addonRawName = options.inRepoAddon ? options.inRepoAddon : options.pkg.name;
     let addonName = stringUtil.dasherize(addonRawName);
     let fileName = stringUtil.dasherize(options.entity.name);
     let blueprintName = options.originBlueprintName;

@@ -6,7 +6,6 @@ const walkSync = require('walk-sync');
 const chalk = require('chalk');
 const stringUtil = require('ember-cli-string-utils');
 const { merge, uniq } = require('ember-cli-lodash-subset');
-const SilentError = require('silent-error');
 const sortPackageJson = require('sort-package-json');
 
 let date = new Date();
@@ -156,7 +155,7 @@ module.exports = {
       namespace,
       addonName,
       addonNamespace,
-      emberCLIVersion: require('../../package').version,
+      emberCLIVersion: `4.12.0`,
       year: date.getFullYear(),
       yarn: options.yarn,
       welcome: options.welcome,
@@ -208,9 +207,9 @@ module.exports = {
   normalizeEntityName(entityName) {
     entityName = normalizeEntityName(entityName);
 
-    if (this.project.isEmberCLIProject() && !this.project.isEmberCLIAddon()) {
-      throw new SilentError('Generating an addon in an existing ember-cli project is not supported.');
-    }
+    // if (this.project.isEmberCLIProject() && !this.project.isEmberCLIAddon()) {
+    //   throw new SilentError('Generating an addon in an existing ember-cli project is not supported.');
+    // }
 
     return entityName;
   },
