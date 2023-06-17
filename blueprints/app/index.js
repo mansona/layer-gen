@@ -4,20 +4,21 @@ const stringUtil = require('ember-cli-string-utils');
 const chalk = require('chalk');
 const { isExperimentEnabled } = require('../../lib/experiments');
 const directoryForPackageName = require('../../lib/utilities/directory-for-package-name');
+const Blueprint = require('../../lib/models/blueprint');
 
-module.exports = {
-  description: 'The default blueprint for ember-cli projects.',
+module.exports = class AppBlueprint extends Blueprint {
+  description = 'The default blueprint for ember-cli projects.';
 
-  shouldTransformTypeScript: true,
+  shouldTransformTypeScript = true;
 
-  filesToRemove: [
+  filesToRemove = [
     'app/styles/.gitkeep',
     'app/templates/.gitkeep',
     'app/views/.gitkeep',
     'public/.gitkeep',
     'Brocfile.js',
     'testem.json',
-  ],
+  ];
 
   locals(options) {
     let entity = options.entity;
@@ -61,14 +62,14 @@ module.exports = {
       ciProvider: options.ciProvider,
       typescript: options.typescript,
     };
-  },
+  }
 
   files(options) {
     if (this._files) {
       return this._files;
     }
 
-    let files = this._super();
+    let files = super.files();
     if (options.ciProvider !== 'travis') {
       this._files = files.filter((file) => file !== '.travis.yml');
     } else {
@@ -76,7 +77,7 @@ module.exports = {
     }
 
     return this._files;
-  },
+  }
 
   beforeInstall() {
     const version = require('../../package.json').version;
@@ -85,11 +86,11 @@ module.exports = {
     this.ui.writeLine(chalk.blue(`Ember CLI v${version}`));
     this.ui.writeLine('');
     this.ui.writeLine(prependEmoji('✨', `Creating a new Ember app in ${chalk.yellow(process.cwd())}:`));
-  },
+  }
 
   async afterInstall(options) {
     if (options.typescript) {
       await this.addAddonToProject({ name: 'ember-cli-typescript', blueprintOptions: options });
     }
-  },
+  }
 };

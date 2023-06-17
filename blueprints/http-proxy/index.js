@@ -2,10 +2,10 @@
 
 const Blueprint = require('../../lib/models/blueprint');
 
-module.exports = {
-  description: 'Generates a relative proxy to another server.',
+module.exports = class HttpProxyBlueprint extends Blueprint {
+  description = 'Generates a relative proxy to another server.';
 
-  anonymousOptions: ['local-path', 'remote-url'],
+  anonymousOptions = ['local-path', 'remote-url'];
 
   locals(options) {
     let proxyUrl = options.args[2];
@@ -13,7 +13,7 @@ module.exports = {
       path: `/${options.entity.name.replace(/^\//, '')}`,
       proxyUrl,
     };
-  },
+  }
 
   beforeInstall(options) {
     let serverBlueprint = Blueprint.lookup('server', {
@@ -23,9 +23,9 @@ module.exports = {
     });
 
     return serverBlueprint.install(options);
-  },
+  }
 
   afterInstall() {
     return this.addPackagesToProject([{ name: 'http-proxy', target: '^1.1.6' }]);
-  },
+  }
 };
