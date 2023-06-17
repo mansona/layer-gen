@@ -234,7 +234,7 @@ describe('Acceptance: ember new', function () {
   });
 
   it('ember new with git blueprint checks out the blueprint and uses it', async function () {
-    this.timeout(50000); // relies on GH network stuff
+    this.timeout(250000); // relies on GH network stuff - needs to be so long because windows is so slow
 
     await ember([
       'new',
@@ -248,7 +248,7 @@ describe('Acceptance: ember new', function () {
   });
 
   it('ember new with git blueprint and ref checks out the blueprint with the correct ref and uses it', async function () {
-    this.timeout(50000); // relies on GH network stuff
+    this.timeout(250000); // relies on GH network stuff - needs to be so long because windows is so slow
 
     await ember([
       'new',
@@ -262,7 +262,7 @@ describe('Acceptance: ember new', function () {
   });
 
   it('ember new with shorthand git blueprint and ref checks out the blueprint with the correct ref and uses it', async function () {
-    this.timeout(20000); // relies on GH network stuff
+    this.timeout(250000); // relies on GH network stuff - needs to be so long because windows is so slow
 
     await ember(['new', 'foo', '--skip-npm', '--skip-git', '--blueprint=mansona/app-blueprint-test#named-ref']);
 
