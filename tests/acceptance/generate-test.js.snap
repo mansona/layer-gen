@@ -4,7 +4,7 @@ exports[`Acceptance: ember generate blueprint foo/bar 1`] = `
 "'use strict';
 const Blueprint = require('layer-gen/lib/models/blueprint');
 
-module.exports = class Blueprint extends Blueprint {
+module.exports = class FooBarBlueprint extends Blueprint {
   description = '';
 
   // locals(options) {

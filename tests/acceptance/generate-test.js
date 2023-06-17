@@ -59,7 +59,7 @@ describe('Acceptance: ember generate', function () {
     expect(file('blueprints/foo/index.js')).to.contain(
       `const Blueprint = require('layer-gen/lib/models/blueprint');
 
-module.exports = class Blueprint extends Blueprint {
+module.exports = class FooBlueprint extends Blueprint {
   description = '';
 
   // locals(options) {
@@ -194,7 +194,7 @@ module.exports = class CustomBlueBlueprint extends Blueprint {
 
     replaceFile(
       'blueprints/foo/index.js',
-      'module.exports = class Blueprint extends Blueprint {',
+      'module.exports = class FooBlueprint extends Blueprint {',
       `module.exports = class FooBlueprint extends Blueprint {
   availableOptions = [
     { name: 'foo',
@@ -205,12 +205,13 @@ module.exports = class CustomBlueBlueprint extends Blueprint {
   ];
 
   locals(options) {
+    debugger
     return { foo: options.foo };
   }`
     );
 
     await outputFile(
-      'blueprints/foo/files/app/foos/__name__.js',
+      path.join(process.cwd(), 'blueprints/foo/files/app/foos/__name__.js'),
       "import Ember from 'ember';\n" + 'export default Ember.Object.extend({ foo: <%= foo %> });\n'
     );
 
