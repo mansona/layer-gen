@@ -24,6 +24,13 @@
 /.github/workflows/*/
 !/.github/workflows/ci.yml
 
-# layer-gen should come with no blueprints by default (apart from maybe blueprint itself)
-# todo make blueprints more explicit so it won't discover this folder
-/blueprints/
+# only expose the blueprint addon with base layer-gen
+/blueprints/addon/
+/blueprints/addon-import/
+/blueprints/app/
+/blueprints/http-mock/
+/blueprints/http-proxy/
+/blueprints/in-repo-addon/
+/blueprints/lib/
+/blueprints/server/
+
