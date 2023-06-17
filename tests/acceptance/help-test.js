@@ -21,7 +21,7 @@ let FooCommand = class FooCommand extends Command {
   availableOptions = [{ name: 'dry-run', type: Boolean, default: false, aliases: ['d'] }];
 
   anonymousOptions = ['<speed>'];
-}
+};
 
 // TODO come back and fix this
 describe.skip('Acceptance: ember help', function () {

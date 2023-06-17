@@ -281,7 +281,8 @@ module.exports = class MyBlueprint extends Blueprint {
       customOption: options.customOption
     };
   }
-};`);
+};`
+    );
 
     fs.writeFileSync(
       'my_blueprint/package.json',
@@ -290,7 +291,7 @@ module.exports = class MyBlueprint extends Blueprint {
   "dependencies": {
     "layer-gen": "*"
   }
-}`,
+}`
     );
 
     fs.writeFileSync('my_blueprint/files/gitignore', '<%= customOption %>');

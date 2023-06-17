@@ -97,7 +97,7 @@ describe('new command', function () {
         expect(commandOptions.customOption).to.equal('customValue');
         return Promise.resolve('Called run');
       }
-    }
+    };
 
     td.when(Blueprint.lookup('app'), { ignoreExtraArgs: true }).thenReturn({
       availableOptions: [{ name: 'custom-blueprint-option', type: String }],

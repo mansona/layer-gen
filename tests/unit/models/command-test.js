@@ -24,7 +24,7 @@ let ServeCommand = class ServeCommand extends Command {
   run(options) {
     return options;
   }
-}
+};
 
 let DevelopEmberCLICommand = class DevelopEmberCLICommand extends Command {
   name = 'develop-ember-cli';
@@ -33,7 +33,7 @@ let DevelopEmberCLICommand = class DevelopEmberCLICommand extends Command {
   run(options) {
     return options;
   }
-}
+};
 
 let InsideProjectCommand = class InsideProjectCommand extends Command {
   name = 'inside-project';
@@ -41,7 +41,7 @@ let InsideProjectCommand = class InsideProjectCommand extends Command {
   run(options) {
     return options;
   }
-}
+};
 
 let OutsideProjectCommand = class OutsideProjectCommand extends Command {
   name = 'outside-project';
@@ -49,7 +49,7 @@ let OutsideProjectCommand = class OutsideProjectCommand extends Command {
   run(options) {
     return options;
   }
-}
+};
 
 let OptionsAliasCommand = class OptionsAliasCommand extends Command {
   name = 'options-alias';
@@ -75,7 +75,7 @@ let OptionsAliasCommand = class OptionsAliasCommand extends Command {
   run(options) {
     return options;
   }
-}
+};
 
 describe('models/command.js', function () {
   let ui;
@@ -176,7 +176,7 @@ describe('models/command.js', function () {
           name: 'options',
           type: String,
         },
-      ]
+      ];
       run(options) {
         return options;
       }
@@ -321,7 +321,7 @@ describe('models/command.js', function () {
       run(options) {
         return options;
       }
-    }
+    };
 
     const command = new AvailableOptionsInitCommand(
       Object.assign(options, {

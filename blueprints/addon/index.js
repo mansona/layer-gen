@@ -24,8 +24,7 @@ const replacers = {
 
 const ADDITIONAL_PACKAGE = require('./additional-package.json');
 
-const description =
-module.exports = class AppBlueprint extends Blueprint {
+const description = (module.exports = class AppBlueprint extends Blueprint {
   description = 'The default blueprint for ember-cli addons.';
   appBlueprintName = 'app';
 
@@ -193,7 +192,7 @@ module.exports = class AppBlueprint extends Blueprint {
     '^addon-config/ember-try.js': 'tests/dummy/config/ember-try.js',
 
     '^npmignore': '.npmignore',
-  }
+  };
 
   fileMapper(path) {
     for (let pattern in this.fileMap) {
@@ -220,4 +219,4 @@ module.exports = class AppBlueprint extends Blueprint {
     let superPath = `${this.lookupBlueprint(this.appBlueprintName).path}/files/${file}`;
     return fs.existsSync(path) ? path : superPath;
   }
-};
+});
