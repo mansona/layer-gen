@@ -5,6 +5,7 @@ module.exports = {
   parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 2020,
+    requireConfigFile: false,
   },
   plugins: ['prettier'],
   extends: ['eslint:recommended', 'plugin:n/recommended', 'plugin:prettier/recommended'],
