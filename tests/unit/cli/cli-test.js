@@ -4,7 +4,6 @@ const { expect } = require('chai');
 const MockUI = require('console-ui/mock');
 const MockAnalytics = require('../../helpers/mock-analytics');
 const td = require('testdouble');
-const Command = require('../../../lib/models/command');
 const CLI = require('../../../lib/cli/cli');
 
 let ui;

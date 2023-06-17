@@ -12,7 +12,6 @@ const BlueprintNpmTask = require('ember-cli-internal-test-helpers/lib/helpers/di
 
 const { expect } = require('chai');
 const { file } = require('chai-files');
-const execa = require('execa');
 
 async function linkLayerGen() {
   await fs.mkdir('node_modules');

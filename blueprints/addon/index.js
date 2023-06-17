@@ -24,7 +24,7 @@ const replacers = {
 
 const ADDITIONAL_PACKAGE = require('./additional-package.json');
 
-const description = (module.exports = class AppBlueprint extends Blueprint {
+module.exports = class AppBlueprint extends Blueprint {
   description = 'The default blueprint for ember-cli addons.';
   appBlueprintName = 'app';
 
@@ -219,4 +219,4 @@ const description = (module.exports = class AppBlueprint extends Blueprint {
     let superPath = `${this.lookupBlueprint(this.appBlueprintName).path}/files/${file}`;
     return fs.existsSync(path) ? path : superPath;
   }
-});
+};
