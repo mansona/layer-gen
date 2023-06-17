@@ -23,3 +23,7 @@
 /.github/workflows/*
 /.github/workflows/*/
 !/.github/workflows/ci.yml
+
+# layer-gen should come with no blueprints by default (apart from maybe blueprint itself)
+# todo make blueprints more explicit so it won't discover this folder
+/blueprints/

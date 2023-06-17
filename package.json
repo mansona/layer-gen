@@ -1,6 +1,6 @@
 {
   "name": "layer-gen",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "Command line tool for developing ambitious ember.js apps",
   "keywords": [
     "app",
@@ -123,6 +123,8 @@
     "yam": "^1.0.0"
   },
   "devDependencies": {
+    "layer-gen": ".",
+    "@babel/eslint-parser": "^7.21.8",
     "@octokit/rest": "^19.0.7",
     "broccoli-plugin": "^4.0.3",
     "broccoli-test-helper": "^2.0.0",
