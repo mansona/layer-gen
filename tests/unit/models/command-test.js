@@ -10,50 +10,50 @@ const td = require('testdouble');
 let Task = require('../../../lib/models/task');
 let Command = require('../../../lib/models/command');
 
-let ServeCommand = Command.extend({
-  name: 'serve',
-  aliases: ['server', 's'],
-  availableOptions: [
+let ServeCommand = class ServeCommand extends Command {
+  name = 'serve';
+  aliases = ['server', 's'];
+  availableOptions = [
     { name: 'port', type: Number, default: 4200 },
     { name: 'host', type: String, default: '0.0.0.0' },
     { name: 'proxy', type: String },
     { name: 'live-reload', type: Boolean, default: true, aliases: ['lr'] },
     { name: 'live-reload-port', type: Number, description: '(Defaults to port number + 31529)' },
     { name: 'environment', type: String, default: 'development' },
-  ],
+  ];
   run(options) {
     return options;
-  },
-});
+  }
+}
 
-let DevelopEmberCLICommand = Command.extend({
-  name: 'develop-ember-cli',
-  works: 'everywhere',
-  availableOptions: [{ name: 'package-name', key: 'packageName', type: String, required: true }],
+let DevelopEmberCLICommand = class DevelopEmberCLICommand extends Command {
+  name = 'develop-ember-cli';
+  works = 'everywhere';
+  availableOptions = [{ name: 'package-name', key: 'packageName', type: String, required: true }];
   run(options) {
     return options;
-  },
-});
+  }
+}
 
-let InsideProjectCommand = Command.extend({
-  name: 'inside-project',
-  works: 'insideProject',
+let InsideProjectCommand = class InsideProjectCommand extends Command {
+  name = 'inside-project';
+  works = 'insideProject';
   run(options) {
     return options;
-  },
-});
+  }
+}
 
-let OutsideProjectCommand = Command.extend({
-  name: 'outside-project',
-  works: 'outsideProject',
+let OutsideProjectCommand = class OutsideProjectCommand extends Command {
+  name = 'outside-project';
+  works = 'outsideProject';
   run(options) {
     return options;
-  },
-});
+  }
+}
 
-let OptionsAliasCommand = Command.extend({
-  name: 'options-alias',
-  availableOptions: [
+let OptionsAliasCommand = class OptionsAliasCommand extends Command {
+  name = 'options-alias';
+  availableOptions = [
     {
       name: 'taco',
       type: String,
@@ -71,11 +71,11 @@ let OptionsAliasCommand = Command.extend({
       type: String,
       aliases: ['dm', { hw: 'Hello world' }],
     },
-  ],
+  ];
   run(options) {
     return options;
-  },
-});
+  }
+}
 
 describe('models/command.js', function () {
   let ui;

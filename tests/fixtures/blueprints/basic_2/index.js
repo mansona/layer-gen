@@ -1,5 +1,7 @@
-module.exports = {
-  description: 'Another basic blueprint',
+const Blueprint = require('../../../../lib/models/blueprint');
 
-  filesToRemove: ['file-to-remove.txt']
+module.exports = class BasicBlueprint2 extends Blueprint {
+  description = 'Another basic blueprint';
+
+  filesToRemove = ['file-to-remove.txt'];
 };

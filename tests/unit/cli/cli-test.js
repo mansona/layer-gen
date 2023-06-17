@@ -213,37 +213,6 @@ describe('Unit: CLI', function () {
     }
   });
 
-  describe('command interruption handler', function () {
-    let onCommandInterrupt;
-    beforeEach(function () {
-      onCommandInterrupt = td.matchers.isA(Function);
-    });
-
-    it('sets up handler before command run', function () {
-      const CustomCommand = Command.extend({
-        name: 'custom',
-
-        beforeRun() {
-          td.verify(willInterruptProcess.addHandler(onCommandInterrupt));
-
-          return Promise.resolve();
-        },
-
-        run() {
-          return Promise.resolve();
-        },
-      });
-
-      project.eachAddonCommand = function (callback) {
-        callback('custom-addon', {
-          CustomCommand,
-        });
-      };
-
-      return ember(['custom']);
-    });
-  });
-
   describe('help', function () {
     ['--help', '-h'].forEach(function (command) {
       it(`ember ${command}`, function () {

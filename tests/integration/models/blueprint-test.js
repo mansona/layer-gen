@@ -36,52 +36,54 @@ function resetCalled() {
   afterUninstallCalled = false;
 }
 
-let instrumented = {
-  locals(/* opts */) {
-    localsCalled = true;
-    return this._super.locals.apply(this, arguments);
-  },
-
-  normalizeEntityName(/* name */) {
-    normalizeEntityNameCalled = true;
-    return this._super.normalizeEntityName.apply(this, arguments);
-  },
-
-  fileMapTokens() {
-    fileMapTokensCalled = true;
-    return this._super.fileMapTokens.apply(this, arguments);
-  },
-
-  filesPath(/* opts */) {
-    filesPathCalled = true;
-    return this._super.filesPath.apply(this, arguments);
-  },
-
-  beforeInstall(/* opts */) {
-    beforeInstallCalled = true;
-    return this._super.beforeInstall.apply(this, arguments);
-  },
-
-  afterInstall(/* opts */) {
-    afterInstallCalled = true;
-    return this._super.afterInstall.apply(this, arguments);
-  },
-
-  beforeUninstall() {
-    beforeUninstallCalled = true;
-    return this._super.beforeUninstall.apply(this, arguments);
-  },
-
-  afterUninstall() {
-    afterUninstallCalled = true;
-    return this._super.afterUninstall.apply(this, arguments);
-  },
-};
-
 let defaultBlueprints = path.resolve(__dirname, '..', '..', '..', 'blueprints');
 let fixtureBlueprints = path.resolve(__dirname, '..', '..', 'fixtures', 'blueprints');
 let basicBlueprint = path.join(fixtureBlueprints, 'basic');
 let basicNewBlueprint = path.join(fixtureBlueprints, 'basic_2');
+
+const BasicBlueprintClass = require(basicBlueprint);
+
+class InstrumentedBasicBlueprint extends BasicBlueprintClass {
+  locals(/* opts */) {
+    localsCalled = true;
+    return super.locals.apply(this, arguments);
+  }
+
+  normalizeEntityName(/* name */) {
+    normalizeEntityNameCalled = true;
+    return super.normalizeEntityName.apply(this, arguments);
+  }
+
+  fileMapTokens() {
+    fileMapTokensCalled = true;
+    return super.fileMapTokens.apply(this, arguments);
+  }
+
+  filesPath(/* opts */) {
+    filesPathCalled = true;
+    return super.filesPath.apply(this, arguments);
+  }
+
+  beforeInstall(/* opts */) {
+    beforeInstallCalled = true;
+    return super.beforeInstall.apply(this, arguments);
+  }
+
+  afterInstall(/* opts */) {
+    afterInstallCalled = true;
+    return super.afterInstall.apply(this, arguments);
+  }
+
+  beforeUninstall() {
+    beforeUninstallCalled = true;
+    return super.beforeUninstall.apply(this, arguments);
+  }
+
+  afterUninstall() {
+    afterUninstallCalled = true;
+    return super.afterUninstall.apply(this, arguments);
+  }
+}
 
 let basicBlueprintFiles = [
   '.ember-cli',
@@ -107,9 +109,6 @@ let basicBlueprintFilesAfterBasic2 = [
 ];
 
 describe('Blueprint', function () {
-  const BasicBlueprintClass = require(basicBlueprint);
-  let InstrumentedBasicBlueprint = BasicBlueprintClass.extend(instrumented);
-
   beforeEach(function () {
     resetCalled();
   });
