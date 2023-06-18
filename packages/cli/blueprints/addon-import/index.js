@@ -4,7 +4,7 @@ const stringUtil = require('ember-cli-string-utils');
 const path = require('path');
 const inflector = require('inflection');
 const SilentError = require('silent-error');
-const Blueprint = require('../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 
 module.exports = class AddonImportBlueprint extends Blueprint {
   description = 'Generates an import wrapper.';

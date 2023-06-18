@@ -1,4 +1,4 @@
-const Blueprint = require('../../../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 
 module.exports = class BasicBlueprint2 extends Blueprint {
   description = 'Another basic blueprint';

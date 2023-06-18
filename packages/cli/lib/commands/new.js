@@ -5,7 +5,7 @@ const Command = require('../models/command');
 const SilentError = require('silent-error');
 const isValidProjectName = require('../utilities/valid-project-name');
 const normalizeBlueprint = require('../utilities/normalize-blueprint-option');
-const Blueprint = require('../models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 
 module.exports = class NewCommand extends Command {
   static name = 'new';

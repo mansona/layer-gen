@@ -13,8 +13,8 @@ let date = new Date();
 const normalizeEntityName = require('ember-cli-normalize-entity-name');
 const stringifyAndNormalize = require('../../lib/utilities/stringify-and-normalize');
 const directoryForPackageName = require('../../lib/utilities/directory-for-package-name');
-const FileInfo = require('../../lib/models/file-info');
-const Blueprint = require('../../lib/models/blueprint');
+const { FileInfo } = require('layer-gen-blueprint/utilities');
+const Blueprint = require('layer-gen-blueprint');
 
 const replacers = {
   'package.json'(content) {

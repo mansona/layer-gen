@@ -1,6 +1,6 @@
 'use strict';
 
-const Blueprint = require('../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 const isPackageMissing = require('../../lib/utilities/is-package-missing');
 
 module.exports = class ServerBlueprint extends Blueprint {

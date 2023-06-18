@@ -5,7 +5,7 @@ const fs = require('fs-extra');
 const path = require('path');
 let root = process.cwd();
 let tmproot = path.join(root, 'tmp');
-const Blueprint = require('../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 const BlueprintNpmTask = require('ember-cli-internal-test-helpers/lib/helpers/disable-npm-on-blueprint');
 const mkTmpDirIn = require('../../lib/utilities/mk-tmp-dir-in');
 

@@ -3,7 +3,7 @@
 const { expect } = require('chai');
 const commandOptions = require('../../factories/command-options');
 const AddonCommand = require('../../../lib/commands/addon');
-const Blueprint = require('../../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 const td = require('testdouble');
 
 describe('addon command', function () {

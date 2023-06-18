@@ -6,7 +6,7 @@ const path = require('path');
 const replaceFile = require('ember-cli-internal-test-helpers/lib/helpers/file-utils').replaceFile;
 let root = process.cwd();
 let tmproot = path.join(root, 'tmp');
-const Blueprint = require('../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 const BlueprintNpmTask = require('ember-cli-internal-test-helpers/lib/helpers/disable-npm-on-blueprint');
 const mkTmpDirIn = require('../../lib/utilities/mk-tmp-dir-in');
 const td = require('testdouble');
@@ -57,7 +57,7 @@ describe('Acceptance: ember generate', function () {
     await generate(['blueprint', 'foo']);
 
     expect(file('blueprints/foo/index.js')).to.contain(
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
 
 module.exports = class FooBlueprint extends Blueprint {
   description = '';
@@ -148,7 +148,7 @@ module.exports = class FooBlueprint extends Blueprint {
 
     await outputFile(
       'blueprints/customblue/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
 module.exports = class CustomBlueBlueprint extends Blueprint {
   locals(options) {
     var loc = {};

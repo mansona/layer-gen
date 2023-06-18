@@ -1,6 +1,6 @@
 'use strict';
 
-const printCommand = require('../../../lib/utilities/print-command');
+const { printCommand } = require('layer-gen-blueprint/utilities');
 const processHelpString = require('../../helpers/process-help-string');
 const { expect } = require('chai');
 const EOL = require('os').EOL;

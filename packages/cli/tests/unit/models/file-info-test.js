@@ -2,7 +2,7 @@
 
 const { expect } = require('chai');
 const MockUI = require('console-ui/mock');
-const FileInfo = require('../../../lib/models/file-info');
+const { FileInfo } = require('layer-gen-blueprint/utilities');
 const path = require('path');
 const fs = require('fs-extra');
 const EOL = require('os').EOL;

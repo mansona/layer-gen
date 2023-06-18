@@ -3,7 +3,7 @@
 const fs = require('fs-extra');
 const ember = require('../helpers/ember');
 const walkSync = require('walk-sync');
-const Blueprint = require('../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 const path = require('path');
 const tmp = require('ember-cli-internal-test-helpers/lib/helpers/tmp');
 let root = process.cwd();
@@ -273,7 +273,7 @@ describe('Acceptance: ember new', function () {
     fs.mkdirsSync('my_blueprint/files');
     fs.writeFileSync(
       'my_blueprint/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
 module.exports = class MyBlueprint extends Blueprint {
   availableOptions = [ { name: 'custom-option' } ];
   locals(options) {

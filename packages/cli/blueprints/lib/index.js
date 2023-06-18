@@ -1,6 +1,6 @@
 'use strict';
 
-const Blueprint = require('../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 const fs = require('fs-extra');
 
 module.exports = class LibBlueprint extends Blueprint {

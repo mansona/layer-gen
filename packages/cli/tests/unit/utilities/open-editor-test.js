@@ -1,6 +1,6 @@
 'use strict';
 
-const openEditor = require('../../../lib/utilities/open-editor');
+const { openEditor } = require('layer-gen-blueprint/utilities');
 
 const { expect } = require('chai');
 const td = require('testdouble');

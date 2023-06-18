@@ -7,7 +7,7 @@ let root = process.cwd();
 let tmproot = path.join(root, 'tmp');
 const mkTmpDirIn = require('../../lib/utilities/mk-tmp-dir-in');
 
-const Blueprint = require('../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 const BlueprintNpmTask = require('ember-cli-internal-test-helpers/lib/helpers/disable-npm-on-blueprint');
 
 const { expect } = require('chai');
@@ -73,7 +73,7 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
 
     await fs.outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
 module.exports = class FooBlueprint extends Blueprint {
   shouldTransformTypeScript = true;
 }`
@@ -100,7 +100,7 @@ module.exports = class FooBlueprint extends Blueprint {
 
     await fs.outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooBlueprint extends Blueprint {
         shouldTransformTypeScript = true;
       }`
@@ -127,7 +127,7 @@ module.exports = class FooBlueprint extends Blueprint {
 
     await fs.outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooBlueprint extends Blueprint {
         shouldTransformTypeScript = true;
       }`
@@ -158,7 +158,7 @@ module.exports = class FooBlueprint extends Blueprint {
 
     await fs.outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooBlueprint extends Blueprint {
         shouldTransformTypeScript = false;
       }`
@@ -189,7 +189,7 @@ module.exports = class FooBlueprint extends Blueprint {
 
     await fs.outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooBlueprint extends Blueprint {
         shouldTransformTypeScript = false;
       }`
@@ -216,7 +216,7 @@ module.exports = class FooBlueprint extends Blueprint {
 
     await fs.outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooBlueprint extends Blueprint {
         shouldTransformTypeScript = true;
       }`
@@ -243,7 +243,7 @@ module.exports = class FooBlueprint extends Blueprint {
 
     await fs.outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooBlueprint extends Blueprint {
         shouldTransformTypeScript = true;
       }`
@@ -272,7 +272,7 @@ module.exports = class FooBlueprint extends Blueprint {
 
       await fs.outputFile(
         'blueprints/foo/index.js',
-        `const Blueprint = require('layer-gen/lib/models/blueprint');
+        `const Blueprint = require('layer-gen-blueprint');
         module.exports = class FooBlueprint extends Blueprint {
           shouldTransformTypeScript = true;
         }`
@@ -302,7 +302,7 @@ module.exports = class FooBlueprint extends Blueprint {
 
       await fs.outputFile(
         'blueprints/foo/index.js',
-        `const Blueprint = require('layer-gen/lib/models/blueprint');
+        `const Blueprint = require('layer-gen-blueprint');
         module.exports = class FooBlueprint extends Blueprint {
           shouldTransformTypeScript = true;
         }`
@@ -331,7 +331,7 @@ module.exports = class FooBlueprint extends Blueprint {
 
       await fs.outputFile(
         'blueprints/foo/index.js',
-        `const Blueprint = require('layer-gen/lib/models/blueprint');
+        `const Blueprint = require('layer-gen-blueprint');
         module.exports = class FooBlueprint extends Blueprint {
           shouldTransformTypeScript = true;
         }`

@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const temp = require('temp');
 const EOL = require('os').EOL;
-const insertIntoFile = require('../../../lib/utilities/insert-into-file');
+const { insertIntoFile } = require('layer-gen-blueprint/utilities');
 
 const { expect } = require('chai');
 

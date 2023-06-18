@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs-extra');
-const Blueprint = require('../models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 const Task = require('../models/task');
 const util = require('util');
 const temp = require('temp');

@@ -4,7 +4,7 @@ const stringUtil = require('ember-cli-string-utils');
 const chalk = require('chalk');
 const { isExperimentEnabled } = require('../../lib/experiments');
 const directoryForPackageName = require('../../lib/utilities/directory-for-package-name');
-const Blueprint = require('../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 
 module.exports = class AppBlueprint extends Blueprint {
   description = 'The default blueprint for ember-cli projects.';

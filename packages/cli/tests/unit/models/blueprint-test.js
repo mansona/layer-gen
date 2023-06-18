@@ -4,10 +4,10 @@ const processHelpString = require('../../helpers/process-help-string');
 const { expect } = require('chai');
 const path = require('path');
 const EOL = require('os').EOL;
-const MarkdownColor = require('../../../lib/utilities/markdown-color');
+const { MarkdownColor } = require('layer-gen-blueprint/utilities');
 const td = require('testdouble');
 
-let Blueprint = require('../../../lib/models/blueprint');
+let Blueprint = require('layer-gen-blueprint');
 
 describe('Blueprint', function () {
   afterEach(function () {
@@ -133,14 +133,14 @@ describe('Blueprint', function () {
           [
             'blueprint-test',
             {
-              path: '/Users/mansona/temp/layer-gen/node_modules/ember-cli-blueprint-test-helpers/blueprints/blueprint-test',
+              path: '/Users/mansona/temp/layer-gen/node_modules/blueprint-test-helpers/blueprints/blueprint-test',
               overridden: false,
             },
           ],
           [
-            'ember-cli-blueprint-test-helpers',
+            'blueprint-test-helpers',
             {
-              path: '/Users/mansona/temp/layer-gen/node_modules/ember-cli-blueprint-test-helpers/blueprints/ember-cli-blueprint-test-helpers',
+              path: '/Users/mansona/temp/layer-gen/node_modules/blueprint-test-helpers/blueprints/blueprint-test-helpers',
               overridden: false,
             },
           ],

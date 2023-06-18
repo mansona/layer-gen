@@ -14,7 +14,7 @@ let tempRoot = path.join(root, 'tmp');
 const SilentError = require('silent-error');
 const mkTmpDirIn = require('../../../lib/utilities/mk-tmp-dir-in');
 const td = require('testdouble');
-const Blueprint = require('../../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 
 let localsCalled;
 let normalizeEntityNameCalled;

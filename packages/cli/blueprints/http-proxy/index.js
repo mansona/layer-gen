@@ -1,6 +1,6 @@
 'use strict';
 
-const Blueprint = require('../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 
 module.exports = class HttpProxyBlueprint extends Blueprint {
   description = 'Generates a relative proxy to another server.';

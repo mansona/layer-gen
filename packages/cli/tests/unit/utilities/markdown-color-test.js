@@ -1,6 +1,6 @@
 'use strict';
 
-const MarkdownColor = require('../../../lib/utilities/markdown-color');
+const { MarkdownColor } = require('layer-gen-blueprint/utilities');
 const { expect } = require('chai');
 const path = require('path');
 const chalk = require('chalk');

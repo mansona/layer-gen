@@ -1,29 +1,28 @@
 'use strict';
 
-/**
-@module ember-cli
-*/
-const FileInfo = require('./file-info');
+const path = require('path');
+const EOL = require('os').EOL;
+const { existsSync, readFileSync, readdirSync } = require('fs');
+const { dirname, join, basename, resolve } = require('path');
+
 const chalk = require('chalk');
-const MarkdownColor = require('../utilities/markdown-color');
-const sequence = require('../utilities/sequence');
-const printCommand = require('../utilities/print-command');
-const insertIntoFile = require('../utilities/insert-into-file');
-const cleanRemove = require('../utilities/clean-remove');
 const fs = require('fs-extra');
 const inflector = require('inflection');
 const minimatch = require('minimatch');
-const path = require('path');
 const stringUtils = require('ember-cli-string-utils');
 const { merge, zipObject, intersection, cloneDeep } = require('ember-cli-lodash-subset');
-const walkSync = require('walk-sync');
-const SilentError = require('silent-error');
-const EOL = require('os').EOL;
-const normalizeEntityName = require('ember-cli-normalize-entity-name');
 const findUp = require('find-up');
 const logger = require('heimdalljs-logger')('layer-gen:blueprint');
-const { existsSync, readFileSync, readdirSync } = require('fs');
-const { dirname, join, basename, resolve } = require('path');
+const normalizeEntityName = require('ember-cli-normalize-entity-name');
+const walkSync = require('walk-sync');
+const SilentError = require('silent-error');
+
+const FileInfo = require('./utilities/file-info');
+const MarkdownColor = require('./utilities/markdown-color');
+const sequence = require('./utilities/sequence');
+const {printCommand} = require('layer-gen-blueprint/utilities');
+const insertIntoFile = require('./utilities/insert-into-file');
+const cleanRemove = require('./utilities/clean-remove');
 
 const initialIgnoredFiles = ['.DS_Store'];
 

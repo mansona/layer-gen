@@ -5,7 +5,7 @@ const { outputFile, remove, writeJson } = require('fs-extra');
 const path = require('path');
 let root = process.cwd();
 let tmproot = path.join(root, 'tmp');
-const Blueprint = require('../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 const BlueprintNpmTask = require('ember-cli-internal-test-helpers/lib/helpers/disable-npm-on-blueprint');
 const mkTmpDirIn = require('../../lib/utilities/mk-tmp-dir-in');
 const td = require('testdouble');
@@ -48,7 +48,7 @@ describe('Acceptance: ember generate with typescript blueprints', function () {
 
     await outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooBlueprint extends Blueprint {
         shouldTransformTypeScript = true;
       }`
@@ -63,7 +63,7 @@ describe('Acceptance: ember generate with typescript blueprints', function () {
 
     await outputFile(
       'blueprints/foo-test/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooTestBlueprint extends Blueprint {
         shouldTransformTypeScript = true;
       }`
@@ -93,7 +93,7 @@ describe('Acceptance: ember generate with typescript blueprints', function () {
 
     await outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooBlueprint extends Blueprint {
         shouldTransformTypeScript = false;
       }`
@@ -108,7 +108,7 @@ describe('Acceptance: ember generate with typescript blueprints', function () {
 
     await outputFile(
       'blueprints/foo-test/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooTestBlueprint extends Blueprint {
         shouldTransformTypeScript = false;
       }`
@@ -140,7 +140,7 @@ describe('Acceptance: ember generate with typescript blueprints', function () {
 
     await outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooBlueprint extends Blueprint {
         shouldTransformTypeScript = false;
       }`
@@ -155,7 +155,7 @@ describe('Acceptance: ember generate with typescript blueprints', function () {
 
     await outputFile(
       'blueprints/foo-test/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooTestBlueprint extends Blueprint {
         shouldTransformTypeScript = false;
       }`
@@ -184,7 +184,7 @@ describe('Acceptance: ember generate with typescript blueprints', function () {
 
     await outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooBlueprint extends Blueprint {
         shouldTransformTypeScript = true;
       }`
@@ -207,7 +207,7 @@ describe('Acceptance: ember generate with typescript blueprints', function () {
 
     await outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooBlueprint extends Blueprint {
         shouldTransformTypeScript = true;
       }`
@@ -235,7 +235,7 @@ describe('Acceptance: ember generate with typescript blueprints', function () {
 
     await outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooBlueprint extends Blueprint {
         shouldTransformTypeScript = true;
       }`
@@ -262,7 +262,7 @@ describe('Acceptance: ember generate with typescript blueprints', function () {
 
     await outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooBlueprint extends Blueprint {
         shouldTransformTypeScript = true;
       }`
@@ -285,7 +285,7 @@ describe('Acceptance: ember generate with typescript blueprints', function () {
 
     await outputFile(
       'blueprints/foo/index.js',
-      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      `const Blueprint = require('layer-gen-blueprint');
       module.exports = class FooBlueprint extends Blueprint {
         shouldTransformTypeScript = true;
       }`

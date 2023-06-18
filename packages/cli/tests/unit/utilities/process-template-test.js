@@ -1,7 +1,7 @@
 'use strict';
 
 const { expect } = require('chai');
-const processTemplate = require('../../../lib/utilities/process-template');
+const { processTemplate } = require('layer-gen-blueprint/utilities');
 
 describe('process-template', function () {
   it('successfully transforms a template', function () {

@@ -1,7 +1,7 @@
 'use strict';
 
 const { expect } = require('chai');
-const Blueprint = require('../../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 const Command = require('../../../lib/models/command');
 const mergeBlueprintOptions = require('../../../lib/utilities/merge-blueprint-options');
 const td = require('testdouble');

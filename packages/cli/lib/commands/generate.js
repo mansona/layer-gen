@@ -3,7 +3,7 @@
 // const path = require('path');
 const chalk = require('chalk');
 const Command = require('../models/command');
-const Blueprint = require('../models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 const { merge, reject } = require('ember-cli-lodash-subset');
 const EOL = require('os').EOL;
 const SilentError = require('silent-error');

@@ -7,6 +7,6 @@
   "dependencies": {
     "ember-cli-string-utils": "latest",
     "@octokit/rest": "latest",
-    "ember-cli-blueprint-test-helpers": "latest"
+    "blueprint-test-helpers": "workspace:^"
   }
 }

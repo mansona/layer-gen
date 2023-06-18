@@ -37,6 +37,7 @@
     "test:slow": "node --unhandled-rejections=strict tests/runner slow"
   },
   "dependencies": {
+    "layer-gen-blueprint": "workspace:^",
     "@babel/core": "^7.21.4",
     "capture-exit": "^2.0.0",
     "chalk": "^4.1.2",
@@ -92,7 +93,7 @@
     "chai-files": "^1.4.0",
     "chai-jest-snapshot": "^2.0.0",
     "compare-fixture": "^1.1.0",
-    "ember-cli-blueprint-test-helpers": "^0.19.2",
+    "blueprint-test-helpers": "workspace:^",
     "ember-cli-internal-test-helpers": "^0.9.1",
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.6.0",

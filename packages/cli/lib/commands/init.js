@@ -9,7 +9,7 @@ const normalizeBlueprint = require('../utilities/normalize-blueprint-option');
 // const isYarnProject = require('../utilities/is-yarn-project');
 const getLangArg = require('../../lib/utilities/get-lang-arg');
 const { basename } = require('path');
-const Blueprint = require('../models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 
 module.exports = class InitCommand extends Command {
   static name = 'init';

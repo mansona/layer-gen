@@ -1,5 +1,5 @@
 'use strict';
-const Blueprint = require('layer-gen/lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 
 module.exports = class <%= classifiedModuleName %>Blueprint extends Blueprint {
   description = '';

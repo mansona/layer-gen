@@ -9,7 +9,7 @@ const mkTmpDirIn = require('../../lib/utilities/mk-tmp-dir-in');
 const initApp = require('../helpers/init-app');
 const generateUtils = require('../helpers/generate-utils');
 
-const Blueprint = require('../../lib/models/blueprint');
+const Blueprint = require('layer-gen-blueprint');
 const BlueprintNpmTask = require('ember-cli-internal-test-helpers/lib/helpers/disable-npm-on-blueprint');
 
 const { expect } = require('chai');
