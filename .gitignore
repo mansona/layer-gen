@@ -2,8 +2,9 @@
 /coverage/
 /.nyc_output/
 /docs/build/
-/node_modules/
+node_modules/
 /tmp/
+/packages/*/tmp/
 *.log
 *.tgz
 *.pem
