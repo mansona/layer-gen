@@ -26,7 +26,6 @@ let reporter = process.env.MOCHA_REPORTER || (ciInfo.isCI ? 'tap' : 'spec');
 let mocha = new Mocha({
   timeout: 5000,
   reporter,
-  retries: 2,
   rootHooks: {
     beforeEach() {
       chaiJestSnapshot.resetSnapshotRegistry();

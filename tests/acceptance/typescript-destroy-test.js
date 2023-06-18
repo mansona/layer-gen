@@ -13,6 +13,11 @@ const BlueprintNpmTask = require('ember-cli-internal-test-helpers/lib/helpers/di
 const { expect } = require('chai');
 const { file } = require('chai-files');
 
+async function linkLayerGen() {
+  await fs.mkdir('node_modules');
+  return fs.symlink(path.join(__dirname, '..', '..'), './node_modules/layer-gen');
+}
+
 describe('Acceptance: ember destroy with typescript blueprints', function () {
   this.timeout(60000);
   let tmpdir;
@@ -68,15 +73,18 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
 
     await fs.outputFile(
       'blueprints/foo/index.js',
-      `module.exports = {
-        shouldTransformTypeScript: true
-      }`
+      `const Blueprint = require('layer-gen/lib/models/blueprint');
+module.exports = class FooBlueprint extends Blueprint {
+  shouldTransformTypeScript = true;
+}`
     );
 
     await fs.outputFile(
       'blueprints/foo/files/app/foos/__name__.ts',
       "import Ember from 'ember';\n\n" + 'export default Ember.Object.extend({ foo: true });\n'
     );
+
+    await linkLayerGen();
 
     await generate(commandArgs);
     assertFilesExist(files);
@@ -92,10 +100,13 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
 
     await fs.outputFile(
       'blueprints/foo/index.js',
-      `module.exports = {
-        shouldTransformTypeScript: true
+      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      module.exports = class FooBlueprint extends Blueprint {
+        shouldTransformTypeScript = true;
       }`
     );
+
+    await linkLayerGen();
 
     await fs.outputFile(
       'blueprints/foo/files/app/foos/__name__.ts',
@@ -116,10 +127,13 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
 
     await fs.outputFile(
       'blueprints/foo/index.js',
-      `module.exports = {
-        shouldTransformTypeScript: true
+      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      module.exports = class FooBlueprint extends Blueprint {
+        shouldTransformTypeScript = true;
       }`
     );
+
+    await linkLayerGen();
 
     await fs.outputFile(
       'blueprints/foo/files/app/foos/__name__.ts',
@@ -144,10 +158,13 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
 
     await fs.outputFile(
       'blueprints/foo/index.js',
-      `module.exports = {
-        shouldTransformTypeScript: true
+      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      module.exports = class FooBlueprint extends Blueprint {
+        shouldTransformTypeScript = false;
       }`
     );
+
+    await linkLayerGen();
 
     await fs.outputFile(
       'blueprints/foo/files/app/foos/__name__.ts',
@@ -172,8 +189,9 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
 
     await fs.outputFile(
       'blueprints/foo/index.js',
-      `module.exports = {
-        shouldTransformTypeScript: true
+      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      module.exports = class FooBlueprint extends Blueprint {
+        shouldTransformTypeScript = false;
       }`
     );
 
@@ -181,6 +199,8 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
       'blueprints/foo/files/app/foos/__name__.ts',
       "import Ember from 'ember';\n\n" + 'export default Ember.Object.extend({ foo: true });\n'
     );
+
+    await linkLayerGen();
 
     await generate(commandArgs);
     assertFilesExist(files);
@@ -196,8 +216,9 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
 
     await fs.outputFile(
       'blueprints/foo/index.js',
-      `module.exports = {
-        shouldTransformTypeScript: true
+      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      module.exports = class FooBlueprint extends Blueprint {
+        shouldTransformTypeScript = true;
       }`
     );
 
@@ -205,6 +226,8 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
       'blueprints/foo/files/app/foos/__name__.ts',
       "import Ember from 'ember';\n\n" + 'export default Ember.Object.extend({ foo: true });\n'
     );
+
+    await linkLayerGen();
 
     await generate(commandArgs);
     assertFilesExist(files);
@@ -220,8 +243,9 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
 
     await fs.outputFile(
       'blueprints/foo/index.js',
-      `module.exports = {
-        shouldTransformTypeScript: true
+      `const Blueprint = require('layer-gen/lib/models/blueprint');
+      module.exports = class FooBlueprint extends Blueprint {
+        shouldTransformTypeScript = true;
       }`
     );
 
@@ -229,6 +253,8 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
       'blueprints/foo/files/app/foos/__name__.ts',
       "import Ember from 'ember';\n\n" + 'export default Ember.Object.extend({ foo: true });\n'
     );
+
+    await linkLayerGen();
 
     await generate([...commandArgs, '--typescript']);
     assertFilesExist(files);
@@ -246,8 +272,9 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
 
       await fs.outputFile(
         'blueprints/foo/index.js',
-        `module.exports = {
-          shouldTransformTypeScript: true
+        `const Blueprint = require('layer-gen/lib/models/blueprint');
+        module.exports = class FooBlueprint extends Blueprint {
+          shouldTransformTypeScript = true;
         }`
       );
 
@@ -255,6 +282,8 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
         'blueprints/foo/files/app/foos/__name__.ts',
         "import Ember from 'ember';\n\n" + 'export default Ember.Object.extend({ foo: true });\n'
       );
+
+      await linkLayerGen();
 
       await generate(commandArgs);
       await generate([...commandArgs, '--typescript']);
@@ -273,8 +302,9 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
 
       await fs.outputFile(
         'blueprints/foo/index.js',
-        `module.exports = {
-          shouldTransformTypeScript: true
+        `const Blueprint = require('layer-gen/lib/models/blueprint');
+        module.exports = class FooBlueprint extends Blueprint {
+          shouldTransformTypeScript = true;
         }`
       );
 
@@ -282,6 +312,8 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
         'blueprints/foo/files/app/foos/__name__.ts',
         "import Ember from 'ember';\n\n" + 'export default Ember.Object.extend({ foo: true });\n'
       );
+
+      await linkLayerGen();
 
       await generate(commandArgs);
       await generate([...commandArgs, '--typescript']);
@@ -299,8 +331,9 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
 
       await fs.outputFile(
         'blueprints/foo/index.js',
-        `module.exports = {
-          shouldTransformTypeScript: true
+        `const Blueprint = require('layer-gen/lib/models/blueprint');
+        module.exports = class FooBlueprint extends Blueprint {
+          shouldTransformTypeScript = true;
         }`
       );
 
@@ -308,6 +341,8 @@ describe('Acceptance: ember destroy with typescript blueprints', function () {
         'blueprints/foo/files/app/foos/__name__.ts',
         "import Ember from 'ember';\n\n" + 'export default Ember.Object.extend({ foo: true });\n'
       );
+
+      await linkLayerGen();
 
       await generate(commandArgs);
       await generate([...commandArgs, '--typescript']);

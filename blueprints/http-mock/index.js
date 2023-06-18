@@ -3,16 +3,16 @@
 const Blueprint = require('../../lib/models/blueprint');
 const isPackageMissing = require('../../lib/utilities/is-package-missing');
 
-module.exports = {
-  description: 'Generates a mock api endpoint in /api prefix.',
+module.exports = class HttpMock extends Blueprint {
+  description = 'Generates a mock api endpoint in /api prefix.';
 
-  anonymousOptions: ['endpoint-path'],
+  anonymousOptions = ['endpoint-path'];
 
   locals(options) {
     return {
       path: `/${options.entity.name.replace(/^\//, '')}`,
     };
-  },
+  }
 
   beforeInstall(options) {
     let serverBlueprint = Blueprint.lookup('server', {
@@ -22,11 +22,11 @@ module.exports = {
     });
 
     return serverBlueprint.install(options);
-  },
+  }
 
   afterInstall(options) {
     if (!options.dryRun && isPackageMissing(this, 'express')) {
       return this.addPackagesToProject([{ name: 'express', target: '^4.8.5' }]);
     }
-  },
+  }
 };

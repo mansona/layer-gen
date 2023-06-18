@@ -91,13 +91,13 @@ describe('new command', function () {
       }
     };
 
-    command.commands.Init = Command.extend({
+    command.commands.Init = class SomethingCommand extends Command {
       run(commandOptions) {
         expect(commandOptions).to.contain.keys('customOption');
         expect(commandOptions.customOption).to.equal('customValue');
         return Promise.resolve('Called run');
-      },
-    });
+      }
+    };
 
     td.when(Blueprint.lookup('app'), { ignoreExtraArgs: true }).thenReturn({
       availableOptions: [{ name: 'custom-blueprint-option', type: String }],

@@ -1,11 +1,12 @@
 'use strict';
 
+const Blueprint = require('../../lib/models/blueprint');
 const isPackageMissing = require('../../lib/utilities/is-package-missing');
 
-module.exports = {
-  description: 'Generates a server directory for mocks and proxies.',
+module.exports = class ServerBlueprint extends Blueprint {
+  description = 'Generates a server directory for mocks and proxies.';
 
-  normalizeEntityName() {},
+  normalizeEntityName() {}
 
   afterInstall(options) {
     let isMorganMissing = isPackageMissing(this, 'morgan');
@@ -25,5 +26,5 @@ module.exports = {
     if (!options.dryRun && areDependenciesMissing) {
       return this.addPackagesToProject(libsToInstall);
     }
-  },
+  }
 };

@@ -16,11 +16,11 @@ describe('git-init', function () {
   beforeEach(async function () {
     task = new GitInitTask({
       ui: new MockUI(),
-      _gitVersion: td.function(),
-      _gitInit: td.function(),
-      _gitAdd: td.function(),
-      _gitCommit: td.function(),
     });
+    task._gitVersion = td.function();
+    task._gitInit = td.function();
+    task._gitAdd = td.function();
+    task._gitCommit = td.function();
 
     let tmpdir = await mkTmpDirIn(tmproot);
     process.chdir(tmpdir);

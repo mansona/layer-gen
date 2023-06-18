@@ -11,6 +11,7 @@ const BlueprintNpmTask = require('ember-cli-internal-test-helpers/lib/helpers/di
 const mkTmpDirIn = require('../../lib/utilities/mk-tmp-dir-in');
 const td = require('testdouble');
 const lintFix = require('../../lib/utilities/lint-fix');
+const linkLayerGen = require('../helpers/link-layer-gen');
 
 const { expect } = require('chai');
 const { dir, file } = require('chai-files');
@@ -31,6 +32,7 @@ describe('Acceptance: ember generate', function () {
   beforeEach(async function () {
     tmpdir = await mkTmpDirIn(tmproot);
     process.chdir(tmpdir);
+    await linkLayerGen();
   });
 
   afterEach(function () {
@@ -55,20 +57,22 @@ describe('Acceptance: ember generate', function () {
     await generate(['blueprint', 'foo']);
 
     expect(file('blueprints/foo/index.js')).to.contain(
-      'module.exports = {\n' +
-        "  description: ''\n" +
-        '\n' +
-        '  // locals(options) {\n' +
-        '  //   // Return custom template variables here.\n' +
-        '  //   return {\n' +
-        '  //     foo: options.entity.options.foo\n' +
-        '  //   };\n' +
-        '  // }\n' +
-        '\n' +
-        '  // afterInstall(options) {\n' +
-        '  //   // Perform extra work here.\n' +
-        '  // }\n' +
-        '};'
+      `const Blueprint = require('layer-gen/lib/models/blueprint');
+
+module.exports = class FooBlueprint extends Blueprint {
+  description = '';
+
+  // locals(options) {
+  //   // Return custom template variables here.
+  //   return {
+  //     foo: options.entity.options.foo
+  //   };
+  // }
+
+  // afterInstall(options) {
+  //   // Perform extra work here.
+  // }
+};`
     );
   });
 
@@ -144,13 +148,14 @@ describe('Acceptance: ember generate', function () {
 
     await outputFile(
       'blueprints/customblue/index.js',
-      'module.exports = {\n' +
-        '  locals(options) {\n' +
-        '    var loc = {};\n' +
-        "    loc.hasCustomCommand = (options.customCommand) ? 'Yes!' : 'No. :C';\n" +
-        '    return loc;\n' +
-        '  },\n' +
-        '};\n'
+      `const Blueprint = require('layer-gen/lib/models/blueprint');
+module.exports = class CustomBlueBlueprint extends Blueprint {
+  locals(options) {
+    var loc = {};
+    loc.hasCustomCommand = (options.customCommand) ? 'Yes!' : 'No. :C';
+    return loc;
+  }
+};`
     );
 
     await ember(['generate', 'customblue', 'foo', '--custom-command']);
@@ -189,19 +194,24 @@ describe('Acceptance: ember generate', function () {
 
     replaceFile(
       'blueprints/foo/index.js',
-      'module.exports = {',
-      'module.exports = {\navailableOptions: [ \n' +
-        "{ name: 'foo',\ntype: String, \n" +
-        "values: ['one', 'two'],\n" +
-        "default: 'one',\n" +
-        "aliases: [ {'one': 'one'}, {'two': 'two'} ] } ],\n" +
-        'locals(options) {\n' +
-        'return { foo: options.foo };\n' +
-        '},'
+      'module.exports = class FooBlueprint extends Blueprint {',
+      `module.exports = class FooBlueprint extends Blueprint {
+  availableOptions = [
+    { name: 'foo',
+      type: String,
+      values: ['one', 'two'],
+      default: 'one',
+      aliases: [ {'one': 'one'}, {'two': 'two'} ] }
+  ];
+
+  locals(options) {
+    debugger
+    return { foo: options.foo };
+  }`
     );
 
     await outputFile(
-      'blueprints/foo/files/app/foos/__name__.js',
+      path.join(process.cwd(), 'blueprints/foo/files/app/foos/__name__.js'),
       "import Ember from 'ember';\n" + 'export default Ember.Object.extend({ foo: <%= foo %> });\n'
     );
 

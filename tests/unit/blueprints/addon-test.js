@@ -30,10 +30,10 @@ describe('blueprint - addon', function () {
     });
   });
 
-  describe('direct blueprint require', function () {
+  describe('direct blueprint functions', function () {
     let blueprint;
     beforeEach(function () {
-      blueprint = require('../../../blueprints/addon');
+      blueprint = Blueprint.lookup('addon');
       blueprint.options = {
         entity: { name: 'my-cool-addon' },
       };

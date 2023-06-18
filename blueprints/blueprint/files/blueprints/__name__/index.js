@@ -1,7 +1,8 @@
 'use strict';
+const Blueprint = require('layer-gen/lib/models/blueprint');
 
-module.exports = {
-  description: ''
+module.exports = class <%= classifiedModuleName %>Blueprint extends Blueprint {
+  description = '';
 
   // locals(options) {
   //   // Return custom template variables here.

@@ -14,6 +14,7 @@ const normalizeEntityName = require('ember-cli-normalize-entity-name');
 const stringifyAndNormalize = require('../../lib/utilities/stringify-and-normalize');
 const directoryForPackageName = require('../../lib/utilities/directory-for-package-name');
 const FileInfo = require('../../lib/models/file-info');
+const Blueprint = require('../../lib/models/blueprint');
 
 const replacers = {
   'package.json'(content) {
@@ -23,21 +24,20 @@ const replacers = {
 
 const ADDITIONAL_PACKAGE = require('./additional-package.json');
 
-const description = 'The default blueprint for ember-cli addons.';
-module.exports = {
-  description,
-  appBlueprintName: 'app',
+module.exports = class AppBlueprint extends Blueprint {
+  description = 'The default blueprint for ember-cli addons.';
+  appBlueprintName = 'app';
 
-  shouldTransformTypeScript: true,
+  shouldTransformTypeScript = true;
 
-  filesToRemove: [
+  filesToRemove = [
     'tests/dummy/app/styles/.gitkeep',
     'tests/dummy/app/templates/.gitkeep',
     'tests/dummy/app/views/.gitkeep',
     'tests/dummy/public/.gitkeep',
     'Brocfile.js',
     'testem.json',
-  ],
+  ];
 
   updatePackageJson(content) {
     let contents = JSON.parse(content);
@@ -79,7 +79,7 @@ module.exports = {
     merge(contents, ADDITIONAL_PACKAGE);
 
     return stringifyAndNormalize(sortPackageJson(contents));
-  },
+  }
 
   buildFileInfo(intoDir, templateVariables, file) {
     let mappedPath = this.mapFile(file, templateVariables);
@@ -98,7 +98,7 @@ module.exports = {
     }
 
     return new FileInfo(options);
-  },
+  }
 
   beforeInstall() {
     const version = require('../../package.json').version;
@@ -107,7 +107,7 @@ module.exports = {
     this.ui.writeLine(chalk.blue(`Ember CLI v${version}`));
     this.ui.writeLine('');
     this.ui.writeLine(prependEmoji('✨', `Creating a new Ember addon in ${chalk.yellow(process.cwd())}:`));
-  },
+  }
 
   async afterInstall(options) {
     if (options.typescript) {
@@ -116,7 +116,7 @@ module.exports = {
         blueprintOptions: { ...options, save: true },
       });
     }
-  },
+  }
 
   locals(options) {
     let entity = { name: 'dummy' };
@@ -166,7 +166,7 @@ module.exports = {
       ciProvider: options.ciProvider,
       typescript: options.typescript,
     };
-  },
+  }
 
   files(options) {
     let appFiles = this.lookupBlueprint(this.appBlueprintName).files(options);
@@ -176,14 +176,14 @@ module.exports = {
     let addonFiles = walkSync(addonFilesPath, { ignore: [ignoredCITemplate] });
 
     return uniq(appFiles.concat(addonFiles));
-  },
+  }
 
   mapFile() {
-    let result = this._super.mapFile.apply(this, arguments);
+    let result = super.mapFile.apply(this, arguments);
     return this.fileMapper(result);
-  },
+  }
 
-  fileMap: {
+  fileMap = {
     '^app/.gitkeep': 'app/.gitkeep',
     '^app.*': 'tests/dummy/:path',
     '^config.*': 'tests/dummy/:path',
@@ -192,7 +192,7 @@ module.exports = {
     '^addon-config/ember-try.js': 'tests/dummy/config/ember-try.js',
 
     '^npmignore': '.npmignore',
-  },
+  };
 
   fileMapper(path) {
     for (let pattern in this.fileMap) {
@@ -202,7 +202,7 @@ module.exports = {
     }
 
     return path;
-  },
+  }
 
   normalizeEntityName(entityName) {
     entityName = normalizeEntityName(entityName);
@@ -212,11 +212,11 @@ module.exports = {
     // }
 
     return entityName;
-  },
+  }
 
   srcPath(file) {
     let path = `${this.path}/files/${file}`;
     let superPath = `${this.lookupBlueprint(this.appBlueprintName).path}/files/${file}`;
     return fs.existsSync(path) ? path : superPath;
-  },
+  }
 };

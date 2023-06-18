@@ -23,3 +23,14 @@
 /.github/workflows/*
 /.github/workflows/*/
 !/.github/workflows/ci.yml
+
+# only expose the blueprint addon with base layer-gen
+/blueprints/addon/
+/blueprints/addon-import/
+/blueprints/app/
+/blueprints/http-mock/
+/blueprints/http-proxy/
+/blueprints/in-repo-addon/
+/blueprints/lib/
+/blueprints/server/
+

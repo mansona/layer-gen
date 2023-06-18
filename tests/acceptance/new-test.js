@@ -17,6 +17,8 @@ const { expect } = require('chai');
 const { dir, file } = require('chai-files');
 const assertVersionLock = require('../helpers/assert-version-lock');
 
+const linkLayerGen = require('../helpers/link-layer-gen');
+
 let tmpDir = './tmp/new-test';
 
 describe('Acceptance: ember new', function () {
@@ -232,37 +234,37 @@ describe('Acceptance: ember new', function () {
   });
 
   it('ember new with git blueprint checks out the blueprint and uses it', async function () {
-    this.timeout(20000); // relies on GH network stuff
+    this.timeout(250000); // relies on GH network stuff - needs to be so long because windows is so slow
 
     await ember([
       'new',
       'foo',
       '--skip-npm',
       '--skip-git',
-      '--blueprint=https://github.com/ember-cli/app-blueprint-test.git',
+      '--blueprint=https://github.com/mansona/app-blueprint-test.git',
     ]);
 
     expect(file('.ember-cli')).to.exist;
   });
 
   it('ember new with git blueprint and ref checks out the blueprint with the correct ref and uses it', async function () {
-    this.timeout(20000); // relies on GH network stuff
+    this.timeout(250000); // relies on GH network stuff - needs to be so long because windows is so slow
 
     await ember([
       'new',
       'foo',
       '--skip-npm',
       '--skip-git',
-      '--blueprint=https://github.com/ember-cli/app-blueprint-test.git#named-ref',
+      '--blueprint=https://github.com/mansona/app-blueprint-test.git#named-ref',
     ]);
 
     expect(file('.named-ref')).to.exist;
   });
 
   it('ember new with shorthand git blueprint and ref checks out the blueprint with the correct ref and uses it', async function () {
-    this.timeout(20000); // relies on GH network stuff
+    this.timeout(250000); // relies on GH network stuff - needs to be so long because windows is so slow
 
-    await ember(['new', 'foo', '--skip-npm', '--skip-git', '--blueprint=ember-cli/app-blueprint-test#named-ref']);
+    await ember(['new', 'foo', '--skip-npm', '--skip-git', '--blueprint=mansona/app-blueprint-test#named-ref']);
 
     expect(file('.named-ref')).to.exist;
   });
@@ -271,18 +273,30 @@ describe('Acceptance: ember new', function () {
     fs.mkdirsSync('my_blueprint/files');
     fs.writeFileSync(
       'my_blueprint/index.js',
-      [
-        'module.exports = {',
-        "  availableOptions: [ { name: 'custom-option' } ],",
-        '  locals(options) {',
-        '    return {',
-        '      customOption: options.customOption',
-        '    };',
-        '  }',
-        '};',
-      ].join('\n')
+      `const Blueprint = require('layer-gen/lib/models/blueprint');
+module.exports = class MyBlueprint extends Blueprint {
+  availableOptions = [ { name: 'custom-option' } ];
+  locals(options) {
+    return {
+      customOption: options.customOption
+    };
+  }
+};`
     );
+
+    fs.writeFileSync(
+      'my_blueprint/package.json',
+      `{
+  "name": "my_blueprint",
+  "dependencies": {
+    "layer-gen": "*"
+  }
+}`
+    );
+
     fs.writeFileSync('my_blueprint/files/gitignore', '<%= customOption %>');
+
+    await linkLayerGen();
 
     await ember([
       'new',

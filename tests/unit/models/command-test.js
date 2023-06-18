@@ -10,50 +10,50 @@ const td = require('testdouble');
 let Task = require('../../../lib/models/task');
 let Command = require('../../../lib/models/command');
 
-let ServeCommand = Command.extend({
-  name: 'serve',
-  aliases: ['server', 's'],
-  availableOptions: [
+let ServeCommand = class ServeCommand extends Command {
+  static name = 'serve';
+  static aliases = ['server', 's'];
+  availableOptions = [
     { name: 'port', type: Number, default: 4200 },
     { name: 'host', type: String, default: '0.0.0.0' },
     { name: 'proxy', type: String },
     { name: 'live-reload', type: Boolean, default: true, aliases: ['lr'] },
     { name: 'live-reload-port', type: Number, description: '(Defaults to port number + 31529)' },
     { name: 'environment', type: String, default: 'development' },
-  ],
+  ];
   run(options) {
     return options;
-  },
-});
+  }
+};
 
-let DevelopEmberCLICommand = Command.extend({
-  name: 'develop-ember-cli',
-  works: 'everywhere',
-  availableOptions: [{ name: 'package-name', key: 'packageName', type: String, required: true }],
+let DevelopEmberCLICommand = class DevelopEmberCLICommand extends Command {
+  name = 'develop-ember-cli';
+  works = 'everywhere';
+  availableOptions = [{ name: 'package-name', key: 'packageName', type: String, required: true }];
   run(options) {
     return options;
-  },
-});
+  }
+};
 
-let InsideProjectCommand = Command.extend({
-  name: 'inside-project',
-  works: 'insideProject',
+let InsideProjectCommand = class InsideProjectCommand extends Command {
+  name = 'inside-project';
+  works = 'insideProject';
   run(options) {
     return options;
-  },
-});
+  }
+};
 
-let OutsideProjectCommand = Command.extend({
-  name: 'outside-project',
-  works: 'outsideProject',
+let OutsideProjectCommand = class OutsideProjectCommand extends Command {
+  name = 'outside-project';
+  works = 'outsideProject';
   run(options) {
     return options;
-  },
-});
+  }
+};
 
-let OptionsAliasCommand = Command.extend({
-  name: 'options-alias',
-  availableOptions: [
+let OptionsAliasCommand = class OptionsAliasCommand extends Command {
+  name = 'options-alias';
+  availableOptions = [
     {
       name: 'taco',
       type: String,
@@ -71,11 +71,11 @@ let OptionsAliasCommand = Command.extend({
       type: String,
       aliases: ['dm', { hw: 'Hello world' }],
     },
-  ],
+  ];
   run(options) {
     return options;
-  },
-});
+  }
+};
 
 describe('models/command.js', function () {
   let ui;
@@ -152,9 +152,9 @@ describe('models/command.js', function () {
         settings: config.getAll(),
       })
     ).parseArgs(['foo', '--envirmont', 'production']);
-    expect(ui.output).to.match(
-      /The option '--envirmont' is not registered with the 'serve' command. Run `ember serve --help` for a list of supported options./
-    );
+
+    const expectedError = `The option '--envirmont' is not registered with the 'command-test' command. Run \`ember command-test --help\` for a list of supported options.`;
+    expect(ui.output).to.include(expectedError);
   });
 
   it('parseArgs() should parse shorthand options.', function () {
@@ -169,18 +169,18 @@ describe('models/command.js', function () {
   });
 
   it('parseArgs() should parse string options.', function () {
-    let CustomAliasCommand = Command.extend({
-      name: 'custom-alias',
-      availableOptions: [
+    let CustomAliasCommand = class CustomAliasCommand extends Command {
+      static name = 'custom-alias';
+      availableOptions = [
         {
           name: 'options',
           type: String,
         },
-      ],
+      ];
       run(options) {
         return options;
-      },
-    });
+      }
+    };
     const command = new CustomAliasCommand(options).parseArgs(['1', '--options', '--split 2 --random']);
     expect(command).to.have.nested.property('options.options', '--split 2 --random');
   });
@@ -258,11 +258,11 @@ describe('models/command.js', function () {
     });
   });
 
-  it('should be able to set availableOptions within init', function () {
-    let AvailableOptionsInitCommand = Command.extend({
-      name: 'available-options-init-command',
-      init() {
-        this._super.apply(this, arguments);
+  it('should be able to set availableOptions within constructor', function () {
+    let AvailableOptionsInitCommand = class AvailableOptionsInitCommand extends Command {
+      static name = 'available-options-init-command';
+      constructor() {
+        super(...arguments);
 
         this.availableOptions = [
           {
@@ -271,11 +271,11 @@ describe('models/command.js', function () {
             default: true,
           },
         ];
-      },
+      }
       run(options) {
         return options;
-      },
-    });
+      }
+    };
 
     return new AvailableOptionsInitCommand(
       Object.assign(options, {
@@ -296,16 +296,16 @@ describe('models/command.js', function () {
   });
 
   it('should be able to set availableOptions within beforeRun', function () {
-    let AvailableOptionsInitCommand = Command.extend({
-      name: 'available-options-init-command',
+    let AvailableOptionsInitCommand = class AvailableOptionsInitCommand extends Command {
+      static name = 'available-options-init-command';
 
-      availableOptions: [
+      availableOptions = [
         {
           name: 'spicy',
           type: Boolean,
           default: true,
         },
-      ],
+      ];
 
       beforeRun() {
         return new Promise((resolve) => {
@@ -317,11 +317,11 @@ describe('models/command.js', function () {
             })
           );
         });
-      },
+      }
       run(options) {
         return options;
-      },
-    });
+      }
+    };
 
     const command = new AvailableOptionsInitCommand(
       Object.assign(options, {
@@ -815,7 +815,7 @@ describe('models/command.js', function () {
       it('calls printCommand', function () {
         let output = command.printBasicHelp();
 
-        let testString = processHelpString(`ember serve command printed${EOL}`);
+        let testString = processHelpString(`ember command-test command printed${EOL}`);
 
         expect(output).to.equal(testString);
       });
@@ -825,7 +825,7 @@ describe('models/command.js', function () {
 
         let output = command.printBasicHelp();
 
-        let testString = processHelpString(`Usage: serve command printed${EOL}`);
+        let testString = processHelpString(`Usage: command-test command printed${EOL}`);
 
         expect(output).to.equal(testString);
       });

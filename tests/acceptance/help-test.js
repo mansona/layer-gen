@@ -13,15 +13,15 @@ const HelpCommand = require('../../lib/commands/help');
 const requireAsHash = require('../../lib/utilities/require-as-hash');
 const Command = require('../../lib/models/command');
 
-let FooCommand = Command.extend({
-  name: 'foo',
-  description: 'Initializes the warp drive.',
-  works: 'insideProject',
+let FooCommand = class FooCommand extends Command {
+  name = 'foo';
+  description = 'Initializes the warp drive.';
+  works = 'insideProject';
 
-  availableOptions: [{ name: 'dry-run', type: Boolean, default: false, aliases: ['d'] }],
+  availableOptions = [{ name: 'dry-run', type: Boolean, default: false, aliases: ['d'] }];
 
-  anonymousOptions: ['<speed>'],
-});
+  anonymousOptions = ['<speed>'];
+};
 
 // TODO come back and fix this
 describe.skip('Acceptance: ember help', function () {

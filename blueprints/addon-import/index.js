@@ -4,15 +4,16 @@ const stringUtil = require('ember-cli-string-utils');
 const path = require('path');
 const inflector = require('inflection');
 const SilentError = require('silent-error');
+const Blueprint = require('../../lib/models/blueprint');
 
-module.exports = {
-  description: 'Generates an import wrapper.',
+module.exports = class AddonImportBlueprint extends Blueprint {
+  description = 'Generates an import wrapper.';
 
   beforeInstall(options) {
     if (options.originBlueprintName === 'addon-import') {
       throw new SilentError('You cannot call the addon-import blueprint directly.');
     }
-  },
+  }
 
   fileMapTokens() {
     return {
@@ -38,7 +39,7 @@ module.exports = {
         return 'app';
       },
     };
-  },
+  }
 
   locals(options) {
     let addonRawName = options.inRepoAddon ? options.inRepoAddon : options.pkg.name;
@@ -60,5 +61,5 @@ module.exports = {
       modulePath: modulePathSegments.join('/'),
       blueprintName,
     };
-  },
+  }
 };

@@ -6,6 +6,7 @@ const processHelpString = require('../../helpers/process-help-string');
 const convertToJson = require('../../helpers/convert-help-output-to-json');
 const commandOptions = require('../../factories/command-options');
 const td = require('testdouble');
+const Command = require('../../../lib/models/command');
 
 let HelpCommand = require('../../../lib/commands/help');
 
@@ -120,8 +121,10 @@ describe('help command', function () {
     });
 
     it('works with single command alias', function () {
-      let Command1 = function () {};
-      Command1.prototype.aliases = ['my-alias'];
+      let Command1 = class Command1 extends Command {
+        static aliases = ['my-alias'];
+      };
+
       Command1.prototype.printBasicHelp = td.function();
       Command1.prototype.printDetailedHelp = td.function();
 
@@ -137,7 +140,9 @@ describe('help command', function () {
     });
 
     it('passes extra commands to `generate`', function () {
-      let Generate = function () {};
+      let Generate = class FakeGenerate extends Command {
+        static name = 'generate';
+      };
       Generate.prototype.printBasicHelp = td.function();
       Generate.prototype.printDetailedHelp = td.function();
 
@@ -181,8 +186,9 @@ describe('help command', function () {
     });
 
     it('passes extra commands to `generate` alias', function () {
-      let Generate = function () {};
-      Generate.prototype.aliases = ['g'];
+      let Generate = class FakeGenerate extends Command {
+        static aliases = ['g'];
+      };
       Generate.prototype.printBasicHelp = td.function();
       Generate.prototype.printDetailedHelp = td.function();
 
