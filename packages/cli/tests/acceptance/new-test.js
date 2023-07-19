@@ -18,6 +18,7 @@ const { dir, file } = require('chai-files');
 const assertVersionLock = require('../helpers/assert-version-lock');
 
 const linkLayerGen = require('../helpers/link-layer-gen');
+const emberBlueprintPath = require('../helpers/ember-blueprint-path');
 
 let tmpDir = './tmp/new-test';
 
@@ -41,7 +42,7 @@ describe('Acceptance: ember new', function () {
   });
 
   function confirmBlueprintedForDir(blueprintDir, expectedAppDir = 'foo', typescript = false) {
-    let blueprintPath = path.join(root, blueprintDir, 'files');
+    let blueprintPath = path.join(blueprintDir, 'files');
     // ignore .travis.yml
     let expected = walkSync(blueprintPath, { ignore: ['.travis.yml'] }).map((name) =>
       typescript ? name : name.replace(/\.ts$/, '.js')
@@ -72,9 +73,9 @@ describe('Acceptance: ember new', function () {
   });
 
   it('ember new @foo/bar, when parent directory does not contain `foo`', async function () {
-    await ember(['new', '@foo/bar', '--skip-npm']);
+    await ember(['new', '@foo/bar', '--skip-npm', '-b', emberBlueprintPath('app')]);
 
-    confirmBlueprintedForDir('blueprints/app', 'foo-bar');
+    confirmBlueprintedForDir(emberBlueprintPath('app'), 'foo-bar');
   });
 
   it('ember new @foo/bar, when direct parent directory contains `foo`', async function () {
@@ -82,9 +83,9 @@ describe('Acceptance: ember new', function () {
     fs.mkdirsSync(scopedDirectoryPath);
     process.chdir(scopedDirectoryPath);
 
-    await ember(['new', '@foo/bar', '--skip-npm']);
+    await ember(['new', '@foo/bar', '--skip-npm', '-b', emberBlueprintPath('app')]);
 
-    confirmBlueprintedForDir('blueprints/app', 'bar');
+    confirmBlueprintedForDir(emberBlueprintPath('app'), 'bar');
   });
 
   it('ember new @foo/bar, when parent directory heirarchy contains `foo`', async function () {
@@ -92,9 +93,9 @@ describe('Acceptance: ember new', function () {
     fs.mkdirsSync(scopedDirectoryPath);
     process.chdir(scopedDirectoryPath);
 
-    await ember(['new', '@foo/bar', '--skip-npm']);
+    await ember(['new', '@foo/bar', '--skip-npm', '-b', emberBlueprintPath('app')]);
 
-    confirmBlueprintedForDir('blueprints/app', 'bar');
+    confirmBlueprintedForDir(emberBlueprintPath('app'), 'bar');
   });
 
   it('ember new --no-welcome skips installation of ember-welcome-page', async function () {
@@ -157,9 +158,9 @@ describe('Acceptance: ember new', function () {
   });
 
   it('ember new foo, where foo does not yet exist, works', async function () {
-    await ember(['new', 'foo', '--skip-npm']);
+    await ember(['new', 'foo', '--skip-npm', '-b', emberBlueprintPath('app')]);
 
-    confirmBlueprintedForDir('blueprints/app');
+    confirmBlueprintedForDir(emberBlueprintPath('app'));
   });
 
   it('ember new foo, blueprint targets match the default ember-cli targets', async function () {
@@ -206,7 +207,7 @@ describe('Acceptance: ember new', function () {
     expect(error.name).to.equal('SilentError');
     expect(error.message).to.equal(`You cannot use the ${chalk.green('new')} command inside an ember-cli project.`);
 
-    confirmBlueprintedForDir('blueprints/app');
+    confirmBlueprintedForDir(emberBlueprintPath('app'));
   });
 
   it('ember new with blueprint uses the specified blueprint directory with a relative path', async function () {
@@ -215,7 +216,7 @@ describe('Acceptance: ember new', function () {
 
     await ember(['new', 'foo', '--skip-npm', '--skip-git', '--blueprint=./my_blueprint']);
 
-    confirmBlueprintedForDir(path.join(tmpDir, 'my_blueprint'));
+    confirmBlueprintedForDir(path.join(root, tmpDir, 'my_blueprint'));
   });
 
   it('ember new with blueprint uses the specified blueprint directory with an absolute path', async function () {
@@ -230,7 +231,7 @@ describe('Acceptance: ember new', function () {
       `--blueprint=${path.resolve(process.cwd(), 'my_blueprint')}`,
     ]);
 
-    confirmBlueprintedForDir(path.join(tmpDir, 'my_blueprint'));
+    confirmBlueprintedForDir(path.join(root, tmpDir, 'my_blueprint'));
   });
 
   it('ember new with git blueprint checks out the blueprint and uses it', async function () {

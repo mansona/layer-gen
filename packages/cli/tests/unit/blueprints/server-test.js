@@ -5,6 +5,7 @@ const { emberGenerate, emberNew, setupTestHooks } = require('blueprint-test-help
 
 const { expect } = require('chai');
 const { file } = require('chai-files');
+const emberBlueprintPath = require('../../helpers/ember-blueprint-path');
 
 describe('Acceptance: ember generate and destroy server', function () {
   setupTestHooks(this, {
@@ -12,7 +13,7 @@ describe('Acceptance: ember generate and destroy server', function () {
   });
 
   it('server', async function () {
-    let args = ['server'];
+    let args = ['server', '-b', emberBlueprintPath('server')];
 
     await emberNew();
     await emberGenerate(args);

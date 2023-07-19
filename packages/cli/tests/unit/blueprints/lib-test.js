@@ -5,6 +5,7 @@ const { emberGenerate, emberNew, setupTestHooks } = require('blueprint-test-help
 
 const { expect } = require('chai');
 const { dir } = require('chai-files');
+const emberBlueprintPath = require('../../helpers/ember-blueprint-path');
 
 describe('Acceptance: ember generate and destroy lib', function () {
   setupTestHooks(this, {
@@ -12,7 +13,7 @@ describe('Acceptance: ember generate and destroy lib', function () {
   });
 
   it('lib foo', async function () {
-    let args = ['lib', 'foo'];
+    let args = ['lib', 'foo', '-b', emberBlueprintPath('lib')];
 
     await emberNew();
     await emberGenerate(args);

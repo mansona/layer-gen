@@ -178,13 +178,13 @@ describe('Blueprint', function () {
       expect(blueprint instanceof expectedClass).to.equal(true);
     });
 
-    it('finds blueprints in the ember-cli package', function () {
-      let expectedPath = path.resolve(defaultBlueprints, 'app');
+    it('finds the blueprint blueprint in the layer-gen-cli package', function () {
+      let expectedPath = path.resolve(defaultBlueprints, 'blueprint');
       let expectedClass = Blueprint;
 
-      let blueprint = Blueprint.lookup('app');
+      let blueprint = Blueprint.lookup('blueprint');
 
-      expect(blueprint.name).to.equal('app');
+      expect(blueprint.name).to.equal('blueprint');
       expect(blueprint.path).to.equal(expectedPath);
       expect(blueprint instanceof expectedClass).to.equal(true);
     });

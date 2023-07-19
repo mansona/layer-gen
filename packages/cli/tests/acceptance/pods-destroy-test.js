@@ -13,6 +13,7 @@ const BlueprintNpmTask = require('ember-cli-internal-test-helpers/lib/helpers/di
 
 const { expect } = require('chai');
 const { file } = require('chai-files');
+const emberBlueprintPath = require('../helpers/ember-blueprint-path');
 
 describe('Acceptance: ember destroy pod', function () {
   let tmpdir;
@@ -102,14 +103,14 @@ describe('Acceptance: ember destroy pod', function () {
   });
 
   it('http-mock foo --pod', function () {
-    let commandArgs = ['http-mock', 'foo', '--pod'];
+    let commandArgs = ['http-mock', 'foo', '--pod', '-b', emberBlueprintPath('http-mock')];
     let files = ['server/mocks/foo.js'];
 
     return assertDestroyAfterGenerate(commandArgs, files);
   });
 
   it('http-proxy foo --pod', function () {
-    let commandArgs = ['http-proxy', 'foo', 'bar', '--pod'];
+    let commandArgs = ['http-proxy', 'foo', 'bar', '--pod', '-b', emberBlueprintPath('http-proxy')];
     let files = ['server/proxies/foo.js'];
 
     return assertDestroyAfterGenerate(commandArgs, files);
