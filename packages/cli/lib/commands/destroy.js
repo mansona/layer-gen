@@ -15,6 +15,7 @@ module.exports = class DestroyCommand extends Command {
   availableOptions = [
     { name: 'dry-run', type: Boolean, default: false, aliases: ['d'] },
     { name: 'verbose', type: Boolean, default: false, aliases: ['v'] },
+    { name: 'blueprint-path', type: String, aliases: ['b'] },
     { name: 'pod', type: Boolean, default: false, aliases: ['p', 'pods'] },
     { name: 'classic', type: Boolean, default: false, aliases: ['c'] },
     { name: 'dummy', type: Boolean, default: false, aliases: ['dum', 'id'] },

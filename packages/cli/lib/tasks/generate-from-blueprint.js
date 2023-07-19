@@ -27,7 +27,7 @@ class GenerateTask extends Task {
   }
 
   async createBlueprints(options) {
-    let name = options.args[0];
+    let name = options.blueprintPath ?? options.args[0];
     let noAddonBlueprint = ['mixin', 'blueprint-test'];
 
     let entity = {
