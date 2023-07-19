@@ -2,6 +2,7 @@
 
 const Blueprint = require('layer-gen-blueprint');
 const isPackageMissing = require('../../lib/utilities/is-package-missing');
+const path = require('path');
 
 module.exports = class HttpMock extends Blueprint {
   description = 'Generates a mock api endpoint in /api prefix.';
@@ -15,7 +16,7 @@ module.exports = class HttpMock extends Blueprint {
   }
 
   beforeInstall(options) {
-    let serverBlueprint = Blueprint.lookup('server', {
+    let serverBlueprint = Blueprint.lookup(path.resolve(path.join(__dirname, '../server')), {
       ui: this.ui,
       analytics: this.analytics,
       project: this.project,

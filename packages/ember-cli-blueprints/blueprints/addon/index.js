@@ -26,7 +26,7 @@ const ADDITIONAL_PACKAGE = require('./additional-package.json');
 
 module.exports = class AppBlueprint extends Blueprint {
   description = 'The default blueprint for ember-cli addons.';
-  appBlueprintName = 'app';
+  appBlueprintPath = path.resolve(path.join(__dirname, '../app'));
 
   shouldTransformTypeScript = true;
 
@@ -169,7 +169,7 @@ module.exports = class AppBlueprint extends Blueprint {
   }
 
   files(options) {
-    let appFiles = this.lookupBlueprint(this.appBlueprintName).files(options);
+    let appFiles = this.lookupBlueprint(this.appBlueprintPath).files(options);
     let addonFilesPath = this.filesPath(this.options);
     let ignoredCITemplate = this.options.ciProvider !== 'travis' ? '.travis.yml' : '.github';
 
@@ -216,7 +216,7 @@ module.exports = class AppBlueprint extends Blueprint {
 
   srcPath(file) {
     let path = `${this.path}/files/${file}`;
-    let superPath = `${this.lookupBlueprint(this.appBlueprintName).path}/files/${file}`;
+    let superPath = `${this.lookupBlueprint(this.appBlueprintPath).path}/files/${file}`;
     return fs.existsSync(path) ? path : superPath;
   }
 };

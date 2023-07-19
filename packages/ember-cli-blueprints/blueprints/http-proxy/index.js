@@ -1,6 +1,7 @@
 'use strict';
 
 const Blueprint = require('layer-gen-blueprint');
+const path = require('path');
 
 module.exports = class HttpProxyBlueprint extends Blueprint {
   description = 'Generates a relative proxy to another server.';
@@ -16,7 +17,7 @@ module.exports = class HttpProxyBlueprint extends Blueprint {
   }
 
   beforeInstall(options) {
-    let serverBlueprint = Blueprint.lookup('server', {
+    let serverBlueprint = Blueprint.lookup(path.resolve(path.join(__dirname, '../server')), {
       ui: this.ui,
       analytics: this.analytics,
       project: this.project,
