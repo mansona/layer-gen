@@ -85,7 +85,7 @@
     "yam": "^1.0.0"
   },
   "devDependencies": {
-    "layer-gen": ".",
+    "ember-cli-blueprints": "workspace:*",
     "@babel/eslint-parser": "^7.21.8",
     "broccoli-test-helper": "^2.0.0",
     "chai": "^4.3.7",

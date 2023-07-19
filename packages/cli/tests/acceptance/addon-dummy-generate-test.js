@@ -1,6 +1,7 @@
 'use strict';
 
 const ember = require('../helpers/ember');
+const emberBlueprint = require('../helpers/ember-blueprint-path');
 const fs = require('fs-extra');
 const path = require('path');
 let root = process.cwd();
@@ -58,7 +59,7 @@ describe('Acceptance: ember generate in-addon-dummy', function () {
   });
 
   it('dummy http-mock foo', async function () {
-    await generateInAddon(['http-mock', 'foo', '--dummy']);
+    await generateInAddon(['http-mock', 'foo', '--dummy', '-b', emberBlueprint('http-mock')]);
 
     expect(file('server/index.js').content).to.matchSnapshot();
 
@@ -66,7 +67,7 @@ describe('Acceptance: ember generate in-addon-dummy', function () {
   });
 
   it('dummy http-mock foo-bar', async function () {
-    await generateInAddon(['http-mock', 'foo-bar', '--dummy']);
+    await generateInAddon(['http-mock', 'foo-bar', '--dummy', '-b', emberBlueprint('http-mock')]);
 
     expect(file('server/index.js').content).to.matchSnapshot();
 
@@ -74,7 +75,14 @@ describe('Acceptance: ember generate in-addon-dummy', function () {
   });
 
   it('dummy http-proxy foo', async function () {
-    await generateInAddon(['http-proxy', 'foo', 'http://localhost:5000', '--dummy']);
+    await generateInAddon([
+      'http-proxy',
+      'foo',
+      'http://localhost:5000',
+      '--dummy',
+      '-b',
+      emberBlueprint('http-proxy'),
+    ]);
 
     expect(file('server/index.js').content).to.matchSnapshot();
 
@@ -82,7 +90,7 @@ describe('Acceptance: ember generate in-addon-dummy', function () {
   });
 
   it('dummy server', async function () {
-    await generateInAddon(['server', '--dummy']);
+    await generateInAddon(['server', '--dummy', '-b', emberBlueprint('server')]);
     expect(file('server/index.js')).to.exist;
   });
 

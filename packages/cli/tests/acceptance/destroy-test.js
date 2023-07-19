@@ -1,6 +1,7 @@
 'use strict';
 
 const ember = require('../helpers/ember');
+const emberBlueprint = require('../helpers/ember-blueprint-path');
 const fs = require('fs-extra');
 const path = require('path');
 let root = process.cwd();
@@ -87,14 +88,14 @@ describe('Acceptance: ember destroy', function () {
   });
 
   it('http-mock foo', function () {
-    let commandArgs = ['http-mock', 'foo'];
+    let commandArgs = ['http-mock', 'foo', '-b', emberBlueprint('http-mock')];
     let files = ['server/mocks/foo.js'];
 
     return assertDestroyAfterGenerate(commandArgs, files);
   });
 
   it('http-proxy foo', function () {
-    let commandArgs = ['http-proxy', 'foo', 'bar'];
+    let commandArgs = ['http-proxy', 'foo', 'bar', '-b', emberBlueprint('http-proxy')];
     let files = ['server/proxies/foo.js'];
 
     return assertDestroyAfterGenerate(commandArgs, files);
@@ -148,9 +149,9 @@ describe('Acceptance: ember destroy', function () {
 
   it('http-mock <name> does not remove server/', async function () {
     await initApp();
-    await generate(['http-mock', 'foo']);
-    await generate(['http-mock', 'bar']);
-    await destroy(['http-mock', 'foo']);
+    await generate(['http-mock', 'foo', '-b', emberBlueprint('http-mock')]);
+    await generate(['http-mock', 'bar', '-b', emberBlueprint('http-mock')]);
+    await destroy(['http-mock', 'foo', '-b', emberBlueprint('http-mock')]);
 
     expect(file('server/index.js')).to.exist;
   });

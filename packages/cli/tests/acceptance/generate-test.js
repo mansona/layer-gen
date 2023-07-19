@@ -1,6 +1,7 @@
 'use strict';
 
 const ember = require('../helpers/ember');
+const emberBlueprint = require('../helpers/ember-blueprint-path');
 const { outputFile, remove } = require('fs-extra');
 const path = require('path');
 const replaceFile = require('ember-cli-internal-test-helpers/lib/helpers/file-utils').replaceFile;
@@ -83,7 +84,7 @@ module.exports = class FooBlueprint extends Blueprint {
   });
 
   it('http-mock foo', async function () {
-    await generate(['http-mock', 'foo']);
+    await generate(['http-mock', 'foo', '-b', emberBlueprint('http-mock')]);
 
     expect(file('server/index.js')).to.contain('mocks.forEach(route => route(app));');
 
@@ -91,7 +92,7 @@ module.exports = class FooBlueprint extends Blueprint {
   });
 
   it('http-mock foo-bar', async function () {
-    await generate(['http-mock', 'foo-bar']);
+    await generate(['http-mock', 'foo-bar', '-b', emberBlueprint('http-mock')]);
 
     expect(file('server/index.js')).to.contain('mocks.forEach(route => route(app));');
 
@@ -99,7 +100,7 @@ module.exports = class FooBlueprint extends Blueprint {
   });
 
   it('http-proxy foo', async function () {
-    await generate(['http-proxy', 'foo', 'http://localhost:5000']);
+    await generate(['http-proxy', 'foo', 'http://localhost:5000', '-b', emberBlueprint('http-proxy')]);
 
     expect(file('server/index.js')).to.contain('proxies.forEach(route => route(app));');
 
@@ -179,12 +180,12 @@ module.exports = class CustomBlueBlueprint extends Blueprint {
   });
 
   it('server', async function () {
-    await generate(['server']);
+    await generate(['server', '-b', emberBlueprint('server')]);
     expect(file('server/index.js')).to.exist;
   });
 
   it('lib', async function () {
-    await generate(['lib']);
+    await generate(['lib', '-b', emberBlueprint('lib')]);
     expect(dir('lib')).to.exist;
   });
 

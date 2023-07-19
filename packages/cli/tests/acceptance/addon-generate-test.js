@@ -1,6 +1,7 @@
 'use strict';
 
 const ember = require('../helpers/ember');
+const emberBlueprint = require('../helpers/ember-blueprint-path');
 const path = require('path');
 const fs = require('fs-extra');
 let root = process.cwd();
@@ -52,7 +53,7 @@ describe('Acceptance: ember generate in-addon', function () {
 
   it('in-addon addon-import cannot be called directly', async function () {
     try {
-      await generateInAddon(['addon-import', 'foo']);
+      await generateInAddon(['addon-import', 'foo', '-b', emberBlueprint('addon-import')]);
     } catch (error) {
       expect(error.name).to.equal('SilentError');
       expect(error.message).to.equal('You cannot call the addon-import blueprint directly.');
@@ -105,7 +106,7 @@ describe('Acceptance: ember generate in-addon', function () {
   });
 
   it('in-addon http-mock foo', async function () {
-    await generateInAddon(['http-mock', 'foo']);
+    await generateInAddon(['http-mock', 'foo', '-b', emberBlueprint('http-mock')]);
 
     expect(file('server/index.js')).to.contain('mocks.forEach(route => route(app));');
 
@@ -113,7 +114,7 @@ describe('Acceptance: ember generate in-addon', function () {
   });
 
   it('in-addon http-mock foo-bar', async function () {
-    await generateInAddon(['http-mock', 'foo-bar']);
+    await generateInAddon(['http-mock', 'foo-bar', '-b', emberBlueprint('http-mock')]);
 
     expect(file('server/index.js')).to.contain('mocks.forEach(route => route(app));');
 
@@ -121,7 +122,7 @@ describe('Acceptance: ember generate in-addon', function () {
   });
 
   it('in-addon http-proxy foo', async function () {
-    await generateInAddon(['http-proxy', 'foo', 'http://localhost:5000']);
+    await generateInAddon(['http-proxy', 'foo', 'http://localhost:5000', '-b', emberBlueprint('http-proxy')]);
 
     expect(file('server/index.js')).to.contain('proxies.forEach(route => route(app));');
 
@@ -129,7 +130,7 @@ describe('Acceptance: ember generate in-addon', function () {
   });
 
   it('in-addon server', async function () {
-    await generateInAddon(['server']);
+    await generateInAddon(['server', '-b', emberBlueprint('server')]);
     expect(file('server/index.js')).to.exist;
   });
 

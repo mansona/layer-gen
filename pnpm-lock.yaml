@@ -276,6 +276,9 @@ importers:
       compare-fixture:
         specifier: ^1.1.0
         version: 1.1.0
+      ember-cli-blueprints:
+        specifier: workspace:*
+        version: link:../ember-cli-blueprints
       ember-cli-internal-test-helpers:
         specifier: ^0.9.1
         version: 0.9.1
@@ -306,9 +309,6 @@ importers:
       latest-version:
         specifier: ^5.1.0
         version: 5.1.0
-      layer-gen:
-        specifier: .
-        version: 'link:'
       mocha:
         specifier: ^10.0.0
         version: 10.0.0
@@ -342,6 +342,36 @@ importers:
       yuidocjs:
         specifier: 0.10.2
         version: 0.10.2
+
+  packages/ember-cli-blueprints:
+    dependencies:
+      ember-cli-lodash-subset:
+        specifier: ^2.0.1
+        version: 2.0.1
+      ember-cli-normalize-entity-name:
+        specifier: ^1.0.0
+        version: 1.0.0
+      ember-cli-string-utils:
+        specifier: ^1.1.0
+        version: 1.1.0
+      fs-extra:
+        specifier: ^11.1.1
+        version: 11.1.1
+      inflection:
+        specifier: ^2.0.1
+        version: 2.0.1
+      layer-gen-blueprint:
+        specifier: workspace:*
+        version: link:../blueprint
+      silent-error:
+        specifier: ^1.1.1
+        version: 1.1.1
+      sort-package-json:
+        specifier: ^1.57.0
+        version: 1.57.0
+      walk-sync:
+        specifier: ^3.0.0
+        version: 3.0.0
 
 packages:
 
