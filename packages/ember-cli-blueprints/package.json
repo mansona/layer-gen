@@ -1,5 +1,5 @@
 {
-  "name": "ember-cli-blueprints",
+  "name": "layer-gen-ember-cli-blueprints",
   "dependencies": {
     "ember-cli-lodash-subset": "^2.0.1",
     "ember-cli-normalize-entity-name": "^1.0.0",
