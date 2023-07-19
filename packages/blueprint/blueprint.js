@@ -1628,7 +1628,7 @@ function generateBlueprintMap() {
   let blueprintMap = new Map();
 
   //add the default blueprints (for now)
-  loadBlueprints(join(__dirname, '../../'), blueprintMap);
+  loadBlueprints(__dirname, blueprintMap);
 
   const packageJsonPath = findUp.sync('package.json');
   let packageJson;
