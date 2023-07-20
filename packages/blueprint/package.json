@@ -1,6 +1,7 @@
 {
   "name": "layer-gen-blueprint",
   "main": "blueprint.js",
+  "version": "1.0.0",
   "exports": {
     ".": "./blueprint.js",
     "./utilities": "./utilities/index.js"
