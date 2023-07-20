@@ -1,0 +1,48 @@
+{
+  "name": "layer-gen-blueprint",
+  "main": "blueprint.js",
+  "exports": {
+    ".": "./blueprint.js",
+    "./utilities": "./utilities/index.js"
+  },
+  "scripts": {
+    "lint": "eslint . --cache"
+  },
+  "devDependencies": {
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-chai-expect": "^3.0.0",
+    "eslint-plugin-mocha": "^10.1.0",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-prettier": "^4.2.1"
+  },
+  "engines": {
+    "node": ">= 16"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "diff": "^5.1.0",
+    "ember-cli-lodash-subset": "^2.0.1",
+    "ember-cli-normalize-entity-name": "^1.0.0",
+    "ember-cli-string-utils": "^1.1.0",
+    "find-up": "^5.0.0",
+    "fs-extra": "^11.1.1",
+    "heimdalljs-logger": "^0.1.10",
+    "inflection": "^2.0.1",
+    "isbinaryfile": "^5.0.0",
+    "lodash.template": "^4.5.0",
+    "markdown-it": "^13.0.1",
+    "markdown-it-terminal": "^0.4.0",
+    "minimatch": "^7.4.3",
+    "promise.hash.helper": "^1.0.8",
+    "quick-temp": "^0.1.8",
+    "remove-types": "^1.0.0",
+    "silent-error": "^1.1.1",
+    "walk-sync": "^3.0.0"
+  },
+  "layer-gen": {
+    "blueprints": [
+      "blueprint"
+    ]
+  }
+}

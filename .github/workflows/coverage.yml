@@ -12,19 +12,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: 'npm'
-
-      - run: npm ci
+          cache: 'pnpm'
+      - run: pnpm install
 
       - name: Test && Report to Code Climate
         uses: paambaati/codeclimate-action@v4.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: npm run test:cover
+          coverageCommand: pnpm --filter layer-gen run test:cover
           coverageLocations: "coverage/lcov.info:lcov"
 
       - name: Coveralls

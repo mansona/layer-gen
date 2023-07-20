@@ -1,0 +1,13 @@
+{
+  "name": "blueprint-test-helpers",
+  "dependencies": {
+    "chai": "^4.3.7",
+    "chai-as-promised": "^7.1.1",
+    "chai-files": "^1.4.0",
+    "debug": "^4.3.4",
+    "ember-cli-internal-test-helpers": "^0.9.1",
+    "fs-extra": "^11.1.1",
+    "layer-gen-blueprint": "workspace:^",
+    "tmp-sync": "^1.1.2"
+  }
+}

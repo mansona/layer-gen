@@ -17,13 +17,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: 'npm'
-
-      - run: npm ci
-      - run: npm run lint
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm run lint
 
   basic-tests:
     name: "Basic Tests - ${{ matrix.os }}"
@@ -36,13 +38,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: 'npm'
-      - run: npm i -g npm@latest
-      - run: npm ci
-      - run: npm test
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm run test
 
   tests:
     name: "Node ${{ matrix.node-version }} - ${{ matrix.os }} "
@@ -58,10 +62,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: 'pnpm'
       - run: npm i -g npm@latest
-      - run: npm ci
-      - run: npm run test:all
+      - run: pnpm install
+      - run: pnpm --filter layer-gen run test:all

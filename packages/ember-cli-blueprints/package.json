@@ -1,0 +1,26 @@
+{
+  "name": "layer-gen-ember-cli-blueprints",
+  "dependencies": {
+    "ember-cli-lodash-subset": "^2.0.1",
+    "ember-cli-normalize-entity-name": "^1.0.0",
+    "ember-cli-string-utils": "^1.1.0",
+    "fs-extra": "^11.1.1",
+    "inflection": "^2.0.1",
+    "layer-gen-blueprint": "workspace:*",
+    "silent-error": "^1.1.1",
+    "sort-package-json": "^1.57.0",
+    "walk-sync": "^3.0.0"
+  },
+  "layer-gen": {
+    "blueprints": [
+      "addon",
+      "addon-import",
+      "app",
+      "http-mock",
+      "http-proxy",
+      "in-repo-addon",
+      "lib",
+      "server"
+    ]
+  }
+}
