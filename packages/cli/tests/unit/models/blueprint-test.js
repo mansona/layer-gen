@@ -133,14 +133,14 @@ describe('Blueprint', function () {
           [
             'blueprint-test',
             {
-              path: '/Users/mansona/temp/layer-gen/node_modules/blueprint-test-helpers/blueprints/blueprint-test',
+              path: '/Users/mansona/temp/layer-gen/node_modules/layer-gen-blueprint-test-helpers/blueprints/blueprint-test',
               overridden: false,
             },
           ],
           [
-            'blueprint-test-helpers',
+            'layer-gen-blueprint-test-helpers',
             {
-              path: '/Users/mansona/temp/layer-gen/node_modules/blueprint-test-helpers/blueprints/blueprint-test-helpers',
+              path: '/Users/mansona/temp/layer-gen/node_modules/layer-gen-blueprint-test-helpers/blueprints/layer-gen-blueprint-test-helpers',
               overridden: false,
             },
           ],

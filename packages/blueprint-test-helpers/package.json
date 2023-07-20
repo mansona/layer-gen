@@ -1,5 +1,5 @@
 {
-  "name": "blueprint-test-helpers",
+  "name": "layer-gen-blueprint-test-helpers",
   "dependencies": {
     "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
@@ -9,6 +9,5 @@
     "fs-extra": "^11.1.1",
     "layer-gen-blueprint": "workspace:^",
     "tmp-sync": "^1.1.2"
-  },
-  "private": true
+  }
 }

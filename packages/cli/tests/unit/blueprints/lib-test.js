@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const { emberGenerate, emberNew, setupTestHooks } = require('blueprint-test-helpers');
+const { emberGenerate, emberNew, setupTestHooks } = require('layer-gen-blueprint-test-helpers');
 
 const { expect } = require('chai');
 const { dir } = require('chai-files');
