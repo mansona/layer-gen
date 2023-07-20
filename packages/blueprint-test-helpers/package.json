@@ -1,5 +1,7 @@
 {
   "name": "layer-gen-blueprint-test-helpers",
+  "version": "1.0.0",
+  "private": true,
   "dependencies": {
     "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
