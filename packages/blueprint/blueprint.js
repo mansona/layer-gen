@@ -20,7 +20,7 @@ const SilentError = require('silent-error');
 const FileInfo = require('./utilities/file-info');
 const MarkdownColor = require('./utilities/markdown-color');
 const sequence = require('./utilities/sequence');
-const {printCommand} = require('layer-gen-blueprint/utilities');
+const { printCommand } = require('layer-gen-blueprint/utilities');
 const insertIntoFile = require('./utilities/insert-into-file');
 const cleanRemove = require('./utilities/clean-remove');
 

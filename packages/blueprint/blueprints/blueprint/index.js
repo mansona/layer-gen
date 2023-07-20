@@ -1,6 +1,6 @@
 'use strict';
 
-const Blueprint = require('layer-gen-blueprint');
+const Blueprint = require('../../');
 
 module.exports = class BlueprintBlueprint extends Blueprint {
   description = 'Generates a blueprint and definition.';
