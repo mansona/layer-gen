@@ -10,5 +10,17 @@
     "silent-error": "^1.1.1",
     "sort-package-json": "^1.57.0",
     "walk-sync": "^3.0.0"
+  },
+  "layer-gen": {
+    "blueprints": [
+      "addon",
+      "addon-import",
+      "app",
+      "http-mock",
+      "http-proxy",
+      "in-repo-addon",
+      "lib",
+      "server"
+    ]
   }
 }

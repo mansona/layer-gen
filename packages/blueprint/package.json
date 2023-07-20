@@ -39,5 +39,10 @@
     "remove-types": "^1.0.0",
     "silent-error": "^1.1.1",
     "walk-sync": "^3.0.0"
+  },
+  "layer-gen": {
+    "blueprints": [
+      "blueprint"
+    ]
   }
 }

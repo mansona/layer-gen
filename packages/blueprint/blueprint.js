@@ -1663,24 +1663,12 @@ function generateBlueprintMap() {
 
     const depJson = JSON.parse(readFileSync(depJsonFile));
 
-    // all top level dependencies provide blueprints directly
-    // as long as they are not the same as the default ones
-    if (dirname(depJsonFile) !== resolve(join(__dirname, '../../'))) {
-      loadBlueprints(dirname(depJsonFile), blueprintMap);
-    }
-
-    // this is only looking for deep depencencies
+    // only load explictitly exported blueprints
     const blueprintConfig = depJson['layer-gen']?.blueprints;
 
     if (blueprintConfig) {
-      for (const blueprintName in blueprintConfig) {
-        const blueprintDep = blueprintConfig[blueprintName];
-
-        // resolve the blueprintDep from the package that defined it to respect
-        // node resolution rules
-        const resolvedDep = require.resolve(`${blueprintDep}/package.json`, { paths: [dirname(depJsonFile)] });
-
-        loadBlueprint(join(dirname(resolvedDep), 'blueprints', blueprintName), blueprintMap, {
+      for (const blueprintName of blueprintConfig) {
+        loadBlueprint(join(dirname(depJsonFile), 'blueprints', blueprintName), blueprintMap, {
           throwOnClash: false,
           throwOnMissing: true,
         });
