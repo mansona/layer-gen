@@ -106,7 +106,6 @@
     "mocha": "^10.0.0",
     "nyc": "^15.1.0",
     "prettier": "2.8.7",
-    "release-it": "^15.10.0",
     "strip-ansi": "^6.0.0",
     "testdouble": "^3.16.6",
     "tmp": "^0.2.1",
@@ -120,18 +119,5 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
-  },
-  "release-it": {
-    "git": {
-      "tagName": "v${version}"
-    },
-    "github": {
-      "draft": true,
-      "release": true,
-      "tokenRef": "GITHUB_AUTH"
-    }
-  },
-  "volta": {
-    "node": "16.19.1"
   }
 }
