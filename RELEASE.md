@@ -1,175 +1,27 @@
 # Release Process
 
-ember-cli follows the same channel based release process that Ember does:
+Releases in this repo are mostly automated using [release-plan](https://github.com/embroider-build/release-plan/). Once you label all your PRs correctly (see below) you will have an automatically generated PR that updates your CHANGELOG.md file and a `.release-plan.json` that is used to prepare the release once the PR is merged.
 
-* `release` - This branch represents the `latest` dist-tag on NPM
-* `beta` - This branch represents the `beta` dist-tag on NPM
-* `master` - The branch is not released to the NPM registry, but (generally speaking) can be used directly
+## Preparation
 
-## Initial Stable Release
+Since the majority of the actual release process is automated, the remaining tasks before releasing are: 
 
-* Update blueprint dependencies to latest
+-  correctly labeling **all** pull requests that have been merged since the last release
+-  updating pull request titles so they make sense to our users
 
-```
-node ./dev/update-blueprint-dependencies.js --ember-source=latest --ember-data=latest
-```
+Some great information on why this is important can be found at [keepachangelog.com](https://keepachangelog.com/en/1.1.0/), but the overall
+guiding principle here is that changelogs are for humans, not machines.
 
-* Commit
-* Send pull request to `beta` branch
-* Wait for PR (for updating blueprint dependencies) to be merged
+When reviewing merged PR's the labels to be used are:
 
-* Checkout the `release` branch
+* breaking - Used when the PR is considered a breaking change.
+* enhancement - Used when the PR adds a new feature or enhancement.
+* bug - Used when the PR fixes a bug included in a previous release.
+* documentation - Used when the PR adds or updates documentation.
+* internal - Internal changes or things that don't fit in any other category.
 
-```
-git fetch origin
-git checkout -B release --track origin/release
-```
+**Note:** `release-plan` requires that **all** PRs are labeled. If a PR doesn't fit in a category it's fine to label it as `internal`
 
-* Merge `beta` branch into `release`
+## Release
 
-```
-git fetch origin
-git merge origin/beta
-git push origin release
-```
-
-* Ensure you have the correct dependencies
-
-```
-git clean -fdx
-yarn
-```
-
-* Update the CHANGELOG.md
-  * Run `node ./dev/changelog`
-  * Copy output into `CHANGELOG.md`
-  * Edit to make clearer for consumers (remove non-consumer facing entries, etc)
-  * Ensure blueprint change diff URLs are correct
-  * Merge any prior beta entries together
-  * Update changelog header for current release
-  * Commit
-* Release: `npx release-it`
-* Update GitHub Release with changelog contents
-* Merge `release` into `beta` branch
-
-```
-git checkout -B beta --track origin/beta
-git merge origin/release
-git push origin beta
-```
-
-## Stable Patch Release
-
-* Checkout the `release` branch
-
-```
-git fetch origin
-git checkout -B release --track origin/release
-```
-
-* Ensure you have the correct dependencies
-
-```
-git clean -fdx
-yarn
-```
-
-* Update the CHANGELOG.md
-  * Run `node ./dev/changelog`
-  * Copy output into `CHANGELOG.md`
-  * Edit to make clearer for consumers (remove non-consumer facing entries, etc)
-  * Ensure blueprint change diff URLs are correct
-  * Update changelog header for current release
-  * Commit
-* Release: `npx release-it`
-* Update GitHub Release with changelog contents
-* Merge `release` into `beta` branch
-
-```
-git checkout -B beta --track origin/beta
-git merge origin/release
-git push origin beta
-```
-
-## Initial Beta Release
-
-* Update `ember-source` and `ember-data` to latest beta
-
-```
-node ./dev/update-blueprint-dependencies.js --ember-source=beta --ember-data=beta
-```
-
-* Commit
-* Send pull request to `master` branch
-* Wait for PR (for updating blueprint dependencies) to be merged
-* Checkout the `beta` branch
-
-```
-git fetch origin
-git checkout -B beta --track origin/beta
-```
-
-* Merge `master` branch into `beta`
-
-```
-git fetch origin
-git merge origin/master
-git push origin beta
-```
-
-* Ensure you have the correct dependencies
-
-```
-git clean -fdx
-yarn
-```
-
-* Update the CHANGELOG.md
-  * Run `node ./dev/changelog`
-  * Copy output into `CHANGELOG.md`
-  * Edit to make clearer for consumers (remove non-consumer facing entries, etc)
-  * Ensure blueprint change diff URLs are correct
-  * Update changelog header for current release
-  * Commit
-* Release: `npx release-it`
-* Update GitHub Release with changelog contents
-* Merge `beta` into `master` branch
-
-```
-git checkout master
-git merge origin/beta
-git push origin master
-```
-
-## Subsequent Beta Release
-
-* Checkout the `beta` branch
-
-```
-git fetch origin
-git checkout -B beta --track origin/beta
-```
-
-* Ensure you have the correct dependencies
-
-```
-git clean -fdx
-yarn
-```
-
-* Update the CHANGELOG.md
-  * Run `node ./dev/changelog`
-  * Copy output into `CHANGELOG.md`
-  * Edit to make clearer for consumers (remove non-consumer facing entries, etc)
-  * Ensure blueprint change diff URLs are correct
-  * Update changelog header for current release
-  * Commit
-* Release: `npx release-it`
-* Update GitHub Release with changelog contents
-* Merge `beta` into `master` branch
-
-```
-git checkout master
-git merge origin/beta
-git push origin master
-```
+Once the prep work is completed, the actual release is straight forward: you just need to merge the open [Plan Release](https://github.com/mansona/layer-gen/pulls?q=is%3Apr+is%3Aopen+%22Prepare+Release%22+in%3Atitle) PR

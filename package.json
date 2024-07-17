@@ -1,14 +1,22 @@
 {
-  "version": "0.0.0",
   "name": "layer-gen-monorepo",
+  "version": "0.0.0",
+  "private": true,
   "description": "",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mansona/layer-gen.git"
+  },
+  "license": "ISC",
+  "author": "",
   "main": "index.js",
   "scripts": {
-    "test": "pnpm -r run test",
-    "lint": "pnpm -r run lint"
+    "lint": "pnpm -r run lint",
+    "test": "pnpm -r run test"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "private": true
+  "devDependencies": {
+    "release-plan": "^0.9.0"
+  },
+  "packageManager": "pnpm@8.15.8"
 }
