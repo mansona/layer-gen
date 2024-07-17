@@ -3,7 +3,7 @@
 const path = require('path');
 const EOL = require('os').EOL;
 const { existsSync, readFileSync, readdirSync } = require('fs');
-const { dirname, join, basename, resolve } = require('path');
+const { dirname, join, basename } = require('path');
 
 const chalk = require('chalk');
 const fs = require('fs-extra');

@@ -164,7 +164,6 @@ describe('Acceptance: ember init', function () {
 
     await ember(['init', 'app/**', 'package.json', 'resolver.js', '--skip-npm', '-b', emberBlueprint('app')]);
 
-
     confirmGlobBlueprinted('{app/**,package.json,resolver.js}');
   });
 

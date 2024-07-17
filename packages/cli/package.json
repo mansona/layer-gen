@@ -35,7 +35,6 @@
     "test:slow": "node --unhandled-rejections=strict tests/runner slow"
   },
   "dependencies": {
-    "layer-gen-blueprint": "workspace:^",
     "@babel/core": "^7.21.4",
     "capture-exit": "^2.0.0",
     "chalk": "^4.1.2",
@@ -62,6 +61,7 @@
     "is-git-url": "^1.0.0",
     "is-language-code": "^3.1.0",
     "isbinaryfile": "^5.0.0",
+    "layer-gen-blueprint": "workspace:^",
     "lodash.template": "^4.5.0",
     "markdown-it": "^13.0.1",
     "markdown-it-terminal": "^0.4.0",
@@ -73,6 +73,7 @@
     "promise.hash.helper": "^1.0.8",
     "quick-temp": "^0.1.8",
     "remove-types": "^1.0.0",
+    "resolve": "^1.22.8",
     "safe-stable-stringify": "^2.4.2",
     "semver": "^7.3.5",
     "silent-error": "^1.1.1",
@@ -83,7 +84,6 @@
     "yam": "^1.0.0"
   },
   "devDependencies": {
-    "layer-gen-ember-cli-blueprints": "workspace:*",
     "@babel/eslint-parser": "^7.21.8",
     "broccoli-test-helper": "^2.0.0",
     "chai": "^4.3.7",
@@ -91,7 +91,6 @@
     "chai-files": "^1.4.0",
     "chai-jest-snapshot": "^2.0.0",
     "compare-fixture": "^1.1.0",
-    "layer-gen-blueprint-test-helpers": "workspace:*",
     "ember-cli-internal-test-helpers": "^0.9.1",
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.6.0",
@@ -102,6 +101,8 @@
     "fixturify": "^3.0.0",
     "jsdom": "^21.1.1",
     "latest-version": "^5.1.0",
+    "layer-gen-blueprint-test-helpers": "workspace:*",
+    "layer-gen-ember-cli-blueprints": "workspace:*",
     "mocha": "^10.0.0",
     "nyc": "^15.1.0",
     "prettier": "2.8.7",
