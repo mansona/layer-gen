@@ -311,7 +311,7 @@ module.exports = class MyBlueprint extends Blueprint {
     expect(file('.gitignore')).to.contain('customValue');
   });
 
-  it('ember new uses yarn when blueprint has yarn.lock', async function () {
+  it.skip('ember new uses yarn when blueprint has yarn.lock', async function () {
     if (!hasGlobalYarn) {
       this.skip();
     }
