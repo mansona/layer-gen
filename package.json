@@ -2,23 +2,30 @@
   "name": "layer-gen",
   "version": "0.0.0",
   "description": "",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mansona/layer-gen.git"
+  },
+  "license": "MIT",
+  "author": "Chris Manson <chris@manson.ie>",
   "type": "module",
   "bin": {
-    "gen": "./bin/gen.js",
     "g": "./bin/gen.js",
+    "gen": "./bin/gen.js",
     "generate": "./bin/gen.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.7.0+sha512.6b865ad4b62a1d9842b61d674a393903b871d9244954f652b8842c2b553c72176b278f64c463e52d40fff8aba385c235c8c9ecf5cc7de4fd78b8bb6d49633ab6",
   "dependencies": {
     "@ember/blueprint-model": "github:ember-cli/ember-cli#separate-blueprint&path:packages/blueprint-model",
     "commander": "^13.1.0",
     "package-up": "^5.0.0",
     "prompts": "^2.4.2"
-  }
+  },
+  "devDependencies": {
+    "release-plan": "^0.16.0"
+  },
+  "packageManager": "pnpm@10.7.0+sha512.6b865ad4b62a1d9842b61d674a393903b871d9244954f652b8842c2b553c72176b278f64c463e52d40fff8aba385c235c8c9ecf5cc7de4fd78b8bb6d49633ab6"
 }
