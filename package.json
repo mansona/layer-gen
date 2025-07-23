@@ -11,9 +11,7 @@
   "author": "Chris Manson <chris@manson.ie>",
   "type": "module",
   "bin": {
-    "g": "./bin/gen.js",
-    "gen": "./bin/gen.js",
-    "generate": "./bin/gen.js"
+    "gen": "./bin/gen.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
